@@ -17,7 +17,8 @@ class Formation extends Model
         'target_audience',
         'to_learn',
         'prerequisites',
-        'included'
+        'included',
+        'uuid',
     ];
 
     public function questions(): HasMany

@@ -9,9 +9,10 @@ use Illuminate\Http\Client\Request;
 
 class FormationService implements IService
 {
-    public function store(Request $data): Formation
+    public function store($data): Formation
     {
-        return new Formation;
+        return Formation::create($data);
+
     }
     public function getById(int $formationId): Formation
     {
@@ -21,4 +22,8 @@ class FormationService implements IService
     {
         return Formation::with(['chapters', 'chapters.lessons', 'questions'])->get();
     }
+    
+
+
 }
+

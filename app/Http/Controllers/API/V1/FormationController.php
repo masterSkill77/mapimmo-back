@@ -4,9 +4,11 @@ namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Formation\CreateFormationRequest;
+use App\Models\Formation;
 use App\Services\FormationService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class FormationController extends Controller
@@ -27,7 +29,11 @@ class FormationController extends Controller
         return response()->json($formations);
     }
 
-    public function store(CreateFormationRequest $request)
+    public function store(CreateFormationRequest $request) : Formation
     {
+        $data = $request->validated();
+        $data['uuid'] = Str::uuid();
+        $formation = $this->formationService->store($data);
+        return $formation;
     }
 }
