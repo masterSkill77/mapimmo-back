@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Formation;
 
-use App\Requests\ValidationErrors;
+use App\Http\Requests\ValidationErrors;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateFormationRequest extends FormRequest
