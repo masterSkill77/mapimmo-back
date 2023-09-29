@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Formation extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'title',
         'duration',
@@ -17,7 +19,6 @@ class Formation extends Model
         'prerequisites',
         'included'
     ];
-    use HasFactory;
 
     public function questions(): HasMany
     {
