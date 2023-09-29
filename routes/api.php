@@ -23,7 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('/v1')->group(function () {
     Route::prefix("/formation")->group(function () {
-        Route::get("/", [FormationController::class, "index"]);
-        Route::get("/{id}", [FormationController::class, "getById"]);
+        Route::get('/', [FormationController::class, 'index']);
+        Route::get('/{id}', [FormationController::class, 'getById']);
+        Route::post('/', [FormationController::class, 'store']);
     });
 });
