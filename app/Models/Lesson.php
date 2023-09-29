@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Lesson extends Model
 {
     protected $fillable = [
-        "lesson_title",
-        "youtube_video"
+        'lesson_title',
+        'youtube_video',
+        'chapter_id'
     ];
     use HasFactory;
 }

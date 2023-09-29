@@ -9,13 +9,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Formation extends Model
 {
     protected $fillable = [
-        "title",
-        "duration",
-        "description",
-        "target_audience",
-        "to_learn",
-        "prerequisites",
-        "included"
+        'title',
+        'duration',
+        'description',
+        'target_audience',
+        'to_learn',
+        'prerequisites',
+        'included'
     ];
     use HasFactory;
 
