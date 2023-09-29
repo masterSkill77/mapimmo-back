@@ -21,6 +21,6 @@ class FormationController extends Controller
         return response()->json($formation);
     }
     public function index() : JsonResponse {
-        
+        $formations = 
     }
 }
