@@ -22,7 +22,8 @@ class CreateSubscriptionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            
+            'formation_duration' => 'integer|required',
+            'plan_id' => 'integer|required'
         ];
     }
 }
