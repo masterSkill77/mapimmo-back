@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\V1\ChapterController;
 use App\Http\Controllers\API\V1\FormationController;
+use App\Http\Controllers\API\V1\LessonController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -38,6 +39,6 @@ Route::prefix('/v1')->group(function () {
         Route::delete('/{id}', [ChapterController::class, 'delete']);
     });
     Route::prefix("/lessons")->group(function () {
-        Route::apiResource('/', LessonsController::class);
+        Route::apiResource('/', LessonController::class);
     });
 });

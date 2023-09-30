@@ -2,10 +2,12 @@
 
 namespace App\Http\Requests\Chapter;
 
+use App\Http\Requests\ValidationErrors;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateChapterRequest extends FormRequest
 {
+    use ValidationErrors;
     /**
      * Determine if the user is authorized to make this request.
      */
