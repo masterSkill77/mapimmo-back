@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('card_number');
             $table->tinyInteger('card_month_expires');
             $table->integer('card_year_expires');
+            $table->time('hour_remains');
             $table->timestamps();
         });
     }
