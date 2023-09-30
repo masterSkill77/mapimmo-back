@@ -26,13 +26,14 @@ class CreateFormationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' =>  ['required', 'string', 'max:100'],
-            'duration'=> ['required', 'regex:/(\d+\:\d+)/'],
-            'description'=> ['required', 'string', 'max:255'],
-            'target_audience'=> ['required', 'string', 'max:100'],
-            'to_learn'=> ['required', 'string','max:100'],
-            'prerequisites'=> ['required', 'string','max:100'],
-            'included'=> ['required'],
+            'title' =>  ['required', 'string',],
+            'duration' => ['required', 'regex:/(\d+\:\d+)/'],
+            'description' => ['required', 'text'],
+            'target_audience' => ['required', 'text',],
+            'to_learn' => ['required', 'text',],
+            'prerequisites' => ['required', 'text',],
+            'included' => ['required'],
+            'labels' => ['string']
         ];
     }
 }
