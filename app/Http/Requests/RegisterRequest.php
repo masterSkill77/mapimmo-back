@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Chapter;
+namespace App\Http\Requests;
 
-use App\Http\Requests\ValidationErrors;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateChapterRequest extends FormRequest
+class RegisterRequest extends FormRequest
 {
     use ValidationErrors;
     /**
@@ -24,9 +23,12 @@ class CreateChapterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'string'],
-            'order' => ['required','boolean'],
-            'formation_id' =>  'exists:App\Models\Formation,id'
+            'name' => 'bail|required|string',
+            'email' => 'required|email|string|unique:users',
+            'password' => 'required|string',
+            'enterprise_name' => 'required|string',
+            'lastname' => 'required|string',
+            'phone_number' => 'required|string'
         ];
     }
 }

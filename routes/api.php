@@ -2,6 +2,12 @@
 
 use App\Http\Controllers\API\V1\ChapterController;
 use App\Http\Controllers\API\V1\FormationController;
+
+use App\Http\Controllers\API\V1\LessonController;
+
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,10 +33,21 @@ Route::prefix('/v1')->group(function () {
         Route::get('/', [FormationController::class, 'index']);
         Route::get('/{id}', [FormationController::class, 'getById']);
         Route::post('/', [FormationController::class, 'store']);
+        Route::put('/{id}', [FormationController::class, 'update']);
+        Route::delete('/{id}', [FormationController::class, 'delete']);
     });
     Route::prefix("/chapter")->group(function () {
         Route::get('/', [ChapterController::class, 'index']);
         Route::get('/{id}', [ChapterController::class, 'getById']);
         Route::post('/', [ChapterController::class, 'store']);
+        Route::put('/{id}', [ChapterController::class, 'update']);
+        Route::delete('/{id}', [ChapterController::class, 'delete']);
+    });
+    Route::prefix("/lessons")->group(function () {
+        Route::apiResource('/', LessonController::class);
+    });
+    Route::prefix("/auth")->group(function () {
+        Route::post("register", RegisterController::class);
+        Route::post("login", LoginController::class);
     });
 });

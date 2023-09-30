@@ -4,8 +4,9 @@ namespace App\Services;
 
 use App\Models\Lesson;
 use Illuminate\Database\Eloquent\Collection;
+use App\Services\IService;
 
-class LessonService extends IService
+class LessonService implements IService
 {
     public function store($data): Lesson
     {

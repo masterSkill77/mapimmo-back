@@ -2,16 +2,18 @@
 
 namespace App\Http\Requests\Lesson;
 
+use App\Http\Requests\ValidationErrors;
 use Illuminate\Foundation\Http\FormRequest;
 
 class LessonCreateRequest extends FormRequest
 {
+    use ValidationErrors;
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,9 @@ class LessonCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'lesson_title' => ['required', 'string'],
+            'youtube_video' => ['nullable', 'string'],
+            'chapter_id' =>  'exists:App\Models\Chapter,id'
         ];
     }
 }
