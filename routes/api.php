@@ -4,7 +4,7 @@ use App\Http\Controllers\API\V1\ChapterController;
 use App\Http\Controllers\API\V1\FormationController;
 
 use App\Http\Controllers\API\V1\LessonController;
-
+use App\Http\Controllers\API\V1\SubscriptionController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 
@@ -49,5 +49,8 @@ Route::prefix('/v1')->group(function () {
     Route::prefix("/auth")->group(function () {
         Route::post("register", RegisterController::class);
         Route::post("login", LoginController::class);
+    });
+    Route::prefix('/subscription')->group(function () {
+        Route::post('subscribe', [SubscriptionController::class, 'subscribeToModule'])->middleware('auth:sanctum');
     });
 });

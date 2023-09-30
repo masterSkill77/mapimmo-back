@@ -24,7 +24,7 @@ class CreateSubscriptionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'formation_duration' => 'integer|required',
+            'formation_duration' => 'regex:/(\d+\:\d+)/|required',
             'plan_id' => 'integer|required',
             'cvc' => 'required|integer'
         ];
