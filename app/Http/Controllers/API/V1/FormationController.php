@@ -16,7 +16,7 @@ class FormationController extends Controller
     public function __construct(public FormationService $formationService)
     {
     }
-    public function getFormation(int $formationId): JsonResponse
+    public function getById(int $formationId): JsonResponse
     {
         $formation = $this->formationService->getById($formationId);
         if (!$formation)
@@ -29,11 +29,11 @@ class FormationController extends Controller
         return response()->json($formations);
     }
 
-    public function store(CreateFormationRequest $request) : Formation
+    public function store(CreateFormationRequest $request) : JsonResponse
     {
         $data = $request->validated();
         $data['uuid'] = Str::uuid();
         $formation = $this->formationService->store($data);
-        return $formation;
+        return response()->json($formation);
     }
 }
