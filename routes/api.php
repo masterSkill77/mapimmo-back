@@ -4,6 +4,7 @@ use App\Http\Controllers\API\V1\ChapterController;
 use App\Http\Controllers\API\V1\FormationController;
 
 use App\Http\Controllers\API\V1\LessonController;
+use App\Http\Controllers\API\V1\PlanController;
 use App\Http\Controllers\API\V1\SubscriptionController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -52,5 +53,9 @@ Route::prefix('/v1')->group(function () {
     });
     Route::prefix('/subscription')->group(function () {
         Route::post('subscribe', [SubscriptionController::class, 'subscribeToModule'])->middleware('auth:sanctum');
+    });
+
+    Route::prefix('/plan')->group(function () {
+        Route::post('/', [PlanController::class, 'store']);
     });
 });
