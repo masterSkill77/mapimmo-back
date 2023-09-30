@@ -13,9 +13,7 @@ class SubscriptionService
     protected $stripe;
     public function __construct()
     {
-        $this->stripe = new \Stripe\StripeClient(
-            env('STRIPE_SECRET')
-        );
+        $this->stripe = (new StripeService)->stripe();
     }
 
     public function subscribeUser(User $user, CreateSubscriptionRequest $subscriptionRequest) //: Subscription
@@ -26,24 +24,33 @@ class SubscriptionService
                 'formation_duration' => $subscriptionRequest->formation_duration,
                 'plan_id' => $subscriptionRequest->plan_id
             ]);
-            $token = $this->stripe->tokens->create([
-                'card' => [
-                    'number' => $user->card_number,
-                    'exp_month' => $user->card_month_expires,
-                    'exp_year' => $user->card_year_expires,
-                    'cvc' => $subscriptionRequest->cvc,
-                ]
+            // cus_OjYWMPkTPu6xxT
+
+            // $token = $this->stripe->tokens->create([
+            //     'card' => [
+            //         'number' => $user->card_number,
+            //         'exp_month' => $user->card_month_expires,
+            //         'exp_year' => $user->card_year_expires,
+            //         'cvc' => $subscriptionRequest->cvc,
+            //     ]
+            // ]);
+
+
+            $customer = $this->stripe->customers->create([
+                'description' => 'Custtomer #' . $user->id,
+                'email' => 'clairmont@saha-technology.com'
             ]);
 
-            $charge = $this->stripe->charges->create([
-                'amount' => 500 * 100,
-                'currency' => 'cad',
-                'source' => $token->id,
-                'description' => 'Paiement pour le pack #',
-            ]);
+            // $this->stripe->charges->create([
+            //     'amount' => 500 * 100,
+            //     'currency' => 'cad',
+            //     'customer' => 'cus_OjYWMPkTPu6xxT',
+            //     'source' => 'card_1Nw5QkKJGrbbmbLKaW8uaLCh',
+            //     'description' => 'Paiement pour le pack #',
+            // ]);
 
             // event(new Subscribed($subscription, $user));
-            return $subscription;
+            return $customer;
         });
     }
 }
