@@ -2,13 +2,15 @@
 
 namespace App\Listeners;
 
+use App\Mail\SendConfirmationMail;
 use App\Services\StripeService;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
-class UserSavedListener
+class UserSavedListener implements ShouldQueue
 {
 
     protected $stripe;
@@ -18,6 +20,7 @@ class UserSavedListener
     public function __construct()
     {
         $this->stripe = (new StripeService)->stripe();
+        
     }
 
     /**
@@ -30,5 +33,9 @@ class UserSavedListener
             'email' => $event->user->email,
             'name' => $event->user->name . ' ' . $event->user->lastname
         ]);
+
+        Mail::to($event->user->email)->send(new SendConfirmationMail($event->user));
+
+        Log::info($event->user->email) ;
     }
 }

@@ -18,6 +18,7 @@ class UserService
         $data['password'] = Hash::make($data['password']);
         $user = new User($data);
         $user->save();
+      
         return $user;
     }
     public function login(LoginRequest $request): array
