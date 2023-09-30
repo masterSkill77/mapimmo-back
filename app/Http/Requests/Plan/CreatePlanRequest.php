@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Formation;
+namespace App\Http\Requests\Plan;
 
 use App\Http\Requests\ValidationErrors;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateFormationRequest extends FormRequest
+class CreatePlanRequest extends FormRequest
 {
-
     use ValidationErrors;
-
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -26,14 +24,9 @@ class CreateFormationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' =>  ['required', 'string',],
-            'duration' => ['required', 'regex:/(\d+\:\d+)/'],
-            'description' => ['required', 'string'],
-            'target_audience' => ['required', 'string',],
-            'to_learn' => ['required', 'string',],
-            'prerequisites' => ['required', 'string',],
-            'included' => ['required'],
-            'labels' => ['string']
+            'title' => 'string|required|bail',
+            'price' => 'integer|required',
+            'duration' => 'required|regex:/(\d+\:\d+)/'
         ];
     }
 }

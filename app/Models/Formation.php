@@ -20,6 +20,7 @@ class Formation extends Model
         'prerequisites',
         'included',
         'uuid',
+        'labels'
     ];
 
     public function questions(): HasMany
@@ -27,7 +28,7 @@ class Formation extends Model
         return $this->hasMany(Question::class, 'formation_id');
     }
 
-    public function chapters() : BelongsTo
+    public function chapters(): BelongsTo
     {
         return $this->belongsTo(Chapter::class, 'formation_id');
     }

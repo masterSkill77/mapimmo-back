@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'card_number',
+        'card_month_expires',
+        'card_year_expires',
         'enterprise_name',
         'lastname',
         'phone_number'
@@ -44,5 +47,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+    ];
+
+    protected $dispatchesEvents = [
+        'created' => \App\Events\UserCreated::class,
     ];
 }
