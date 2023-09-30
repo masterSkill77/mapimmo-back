@@ -15,6 +15,7 @@ class Subscription extends Model
         'formation_duration',
         'card_number',
         'is_paid',
+        'active',
         'plan_id'
     ];
 

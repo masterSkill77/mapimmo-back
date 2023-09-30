@@ -39,11 +39,6 @@ class SubscriptionService
                 'currency' => 'cad',
                 'source' => $token->id,
                 'description' => 'Paiement pour le pack #',
-                'transfer_group' => 'ORDER',
-                'transfer_data' => [
-                    'amount' => $amount * 100,
-                    'destination' => 'acct_1N2cL7HC6nuER2HS'
-                ],
             ]);
 
             event(new Subscribed($subscription, $user));

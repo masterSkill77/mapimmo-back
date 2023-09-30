@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('card_number'); // on enregistre seulement sa carte de crédit
             $table->foreignIdFor(Plan::class);
             $table->boolean('is_paid')->default(false);
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }
