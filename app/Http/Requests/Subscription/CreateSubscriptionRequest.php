@@ -26,7 +26,8 @@ class CreateSubscriptionRequest extends FormRequest
         return [
             'formation_duration' => 'regex:/(\d+\:\d+)/|required',
             'plan_id' => 'integer|required',
-            'cvc' => 'required|integer'
+            'cvc' => 'required|integer',
+            'token' => 'string'
         ];
     }
 }

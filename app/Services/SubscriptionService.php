@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Events\Subscribed;
 use App\Http\Requests\Subscription\CreateSubscriptionRequest;
+use App\Models\Plan;
 use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -19,38 +20,32 @@ class SubscriptionService
     public function subscribeUser(User $user, CreateSubscriptionRequest $subscriptionRequest) //: Subscription
     {
         return DB::transaction(function () use ($user, $subscriptionRequest) {
+            $plan = Plan::where('id', $subscriptionRequest->plan_id)->first();
             $subscription = new Subscription([
                 'user_id' => $user->id,
                 'formation_duration' => $subscriptionRequest->formation_duration,
                 'plan_id' => $subscriptionRequest->plan_id
             ]);
-            // cus_OjYWMPkTPu6xxT
 
-            // $token = $this->stripe->tokens->create([
-            //     'card' => [
-            //         'number' => $user->card_number,
-            //         'exp_month' => $user->card_month_expires,
-            //         'exp_year' => $user->card_year_expires,
-            //         'cvc' => $subscriptionRequest->cvc,
-            //     ]
-            // ]);
-
-
-            $customer = $this->stripe->customers->create([
-                'description' => 'Custtomer #' . $user->id,
-                'email' => 'clairmont@saha-technology.com'
+            $customer = $this->stripe->customers->search([
+                // 'query' => "email: '$user->email'"
+                // ACTIVATE THIS PART IF FRONTEND IS OK
+                'query' => "email : 'contact@mapim-formation.com'"
+            ])->data[0];
+            $paymentMethod = $this->stripe->customers->allPaymentMethods(
+                $customer->id,
+                ['type' => 'card']
+            )->data[0];
+            $charge = $this->stripe->charges->create([
+                'amount' => $plan->price * 100,
+                'currency' => 'eur',
+                'customer' => $customer->id,
+                'source' => $paymentMethod->id,
+                'description' => 'Subscription creation',
             ]);
 
-            // $this->stripe->charges->create([
-            //     'amount' => 500 * 100,
-            //     'currency' => 'cad',
-            //     'customer' => 'cus_OjYWMPkTPu6xxT',
-            //     'source' => 'card_1Nw5QkKJGrbbmbLKaW8uaLCh',
-            //     'description' => 'Paiement pour le pack #',
-            // ]);
-
-            // event(new Subscribed($subscription, $user));
-            return $customer;
+            event(new Subscribed($subscription, $user));
+            return $charge;
         });
     }
 }
