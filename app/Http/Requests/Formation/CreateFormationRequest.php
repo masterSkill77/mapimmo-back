@@ -28,10 +28,10 @@ class CreateFormationRequest extends FormRequest
         return [
             'title' =>  ['required', 'string',],
             'duration' => ['required', 'regex:/(\d+\:\d+)/'],
-            'description' => ['required', 'text'],
-            'target_audience' => ['required', 'text',],
-            'to_learn' => ['required', 'text',],
-            'prerequisites' => ['required', 'text',],
+            'description' => ['required', 'string'],
+            'target_audience' => ['required', 'string',],
+            'to_learn' => ['required', 'string',],
+            'prerequisites' => ['required', 'string',],
             'included' => ['required'],
             'labels' => ['string']
         ];

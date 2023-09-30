@@ -32,4 +32,8 @@ class Formation extends Model
     {
         return $this->belongsTo(Chapter::class, 'formation_id');
     }
+
+    protected $casts = [
+        'duration' => 'time',
+    ];
 }
