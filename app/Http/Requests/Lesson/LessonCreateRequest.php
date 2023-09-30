@@ -11,7 +11,7 @@ class LessonCreateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class LessonCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'lesson_title' => ['required', 'string'],
+            'youtube_video' => ['nullable', 'string'],
+            'chapter_id' =>  'exists:App\Models\Chapter,id'
         ];
     }
 }

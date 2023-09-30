@@ -27,10 +27,17 @@ Route::prefix('/v1')->group(function () {
         Route::get('/', [FormationController::class, 'index']);
         Route::get('/{id}', [FormationController::class, 'getById']);
         Route::post('/', [FormationController::class, 'store']);
+        Route::put('/{id}', [FormationController::class, 'update']);
+        Route::delete('/{id}', [FormationController::class, 'delete']);
     });
     Route::prefix("/chapter")->group(function () {
         Route::get('/', [ChapterController::class, 'index']);
         Route::get('/{id}', [ChapterController::class, 'getById']);
         Route::post('/', [ChapterController::class, 'store']);
+        Route::put('/{id}', [ChapterController::class, 'update']);
+        Route::delete('/{id}', [ChapterController::class, 'delete']);
+    });
+    Route::prefix("/lessons")->group(function () {
+        Route::apiResource('/', LessonsController::class);
     });
 });
