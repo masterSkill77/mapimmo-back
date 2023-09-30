@@ -28,9 +28,9 @@ class SubscriptionService
             ]);
             $token = $this->stripe->tokens->create([
                 'card' => [
-                    'number' => $$user->card_number,
-                    'exp_month' => $$user->card_month_expires,
-                    'exp_year' => $$user->card_year_expires,
+                    'number' => $user->card_number,
+                    'exp_month' => $user->card_month_expires,
+                    'exp_year' => $user->card_year_expires,
                     'cvc' => $subscriptionRequest->cvc,
                 ]
             ]);
@@ -42,7 +42,7 @@ class SubscriptionService
                 'description' => 'Paiement pour le pack #',
             ]);
 
-            event(new Subscribed($subscription, $user));
+            // event(new Subscribed($subscription, $user));
             return $subscription;
         });
     }
