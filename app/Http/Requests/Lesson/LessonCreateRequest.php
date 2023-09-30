@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Requests\Chapter;
+namespace App\Http\Requests\Lesson;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateChapterRequest extends FormRequest
+class LessonCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,9 +22,7 @@ class CreateChapterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'string'],
-            'order' => ['required','boolean'],
-            'formation_id' =>  'exists:App\Models\Formation,id'
+            //
         ];
     }
 }

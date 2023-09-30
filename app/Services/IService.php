@@ -17,4 +17,8 @@ interface IService
     public function getById(int $collectionId): Model;
 
     public function getAll(): Collection;
+
+    public function update(Request $data, int $collectionId) : Model;
+
+    public function delete(int $collectionId) :Model;
 }

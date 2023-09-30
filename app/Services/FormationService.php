@@ -23,7 +23,16 @@ class FormationService implements IService
         return Formation::with(['chapters', 'chapters.lessons', 'questions'])->get();
     }
     
+    public function update($data, int $formationId) : Formation{
+        
+        return Formation::where('id', $formationId)->update($data);
+    }
 
+    public function delete($formationId) :Formation
+    {
+
+        return Formation::where('id', $formationId)->delete();
+    } 
 
 }
 

@@ -23,7 +23,9 @@ class ChapterController extends Controller
 
     public function store(CreateChapterRequest $request ): JsonResponse
     {
-        return response()->json();
+        $data = $request->validated();
+        $chapter = $this->chapterservice->store($data);
+        return response()->json($chapter);
     }
 
 
