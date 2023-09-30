@@ -20,7 +20,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->string('card_number');
             $table->tinyInteger('card_month_expires');
-            $table->tinyInteger('card_year_expires');
+            $table->integer('card_year_expires');
             $table->timestamps();
         });
     }
