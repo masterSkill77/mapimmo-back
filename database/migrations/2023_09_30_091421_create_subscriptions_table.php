@@ -18,7 +18,6 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class);
             $table->time('formation_duration'); // durée de formation qu'il veut acheter
-            $table->string('card_number'); // on enregistre seulement sa carte de crédit
             $table->foreignIdFor(Plan::class);
             $table->boolean('is_paid')->default(false);
             $table->boolean('active')->default(true);

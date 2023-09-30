@@ -18,6 +18,9 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->string('card_number');
+            $table->tinyInteger('card_month_expires');
+            $table->tinyInteger('card_year_expires');
             $table->timestamps();
         });
     }
