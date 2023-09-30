@@ -2,10 +2,12 @@
 
 namespace App\Http\Requests\Subscription;
 
+use App\Http\Requests\ValidationErrors;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateSubscriptionRequest extends FormRequest
 {
+    use ValidationErrors;
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -23,7 +25,8 @@ class CreateSubscriptionRequest extends FormRequest
     {
         return [
             'formation_duration' => 'integer|required',
-            'plan_id' => 'integer|required'
+            'plan_id' => 'integer|required',
+            'cvc' => 'required|integer'
         ];
     }
 }

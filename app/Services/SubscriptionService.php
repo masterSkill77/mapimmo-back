@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Events\Subscribed;
+use App\Http\Requests\Subscription\CreateSubscriptionRequest;
 use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -17,25 +18,25 @@ class SubscriptionService
         );
     }
 
-    public function subscribeUser(User $user, string $formationDuration, string $cardNumber, int $expireMonth, int $expireYear, int $cvc, int $amount): Subscription
+    public function subscribeUser(User $user, CreateSubscriptionRequest $subscriptionRequest) //: Subscription
     {
-        return DB::transaction(function () use ($user, $formationDuration, $cardNumber, $expireMonth, $expireYear, $cvc, $amount) {
+        return DB::transaction(function () use ($user, $subscriptionRequest) {
             $subscription = new Subscription([
                 'user_id' => $user->id,
-                'formation_duration' => $formationDuration,
-                'card_number' => $cardNumber,
+                'formation_duration' => $subscriptionRequest->formation_duration,
+                'plan_id' => $subscriptionRequest->plan_id
             ]);
             $token = $this->stripe->tokens->create([
                 'card' => [
-                    'number' => $cardNumber,
-                    'exp_month' => $expireMonth,
-                    'exp_year' => $expireYear,
-                    'cvc' => $cvc,
+                    'number' => $$user->card_number,
+                    'exp_month' => $$user->card_month_expires,
+                    'exp_year' => $$user->card_year_expires,
+                    'cvc' => $subscriptionRequest->cvc,
                 ]
             ]);
 
             $charge = $this->stripe->charges->create([
-                'amount' => $amount * 100,
+                'amount' => 500 * 100,
                 'currency' => 'cad',
                 'source' => $token->id,
                 'description' => 'Paiement pour le pack #',
