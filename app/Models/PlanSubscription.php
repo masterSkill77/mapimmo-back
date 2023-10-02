@@ -10,6 +10,12 @@ class PlanSubscription extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'plan_id',
+        'subscription_id',
+        'quantity',
+    ];
+
     public $timestamps = false;
 
     public function plan(): BelongsTo
