@@ -25,7 +25,7 @@ class CreateChapterRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string'],
-            'order' => ['required','boolean'],
+            'order' => ['required','int'],
             'formation_id' =>  'exists:App\Models\Formation,id'
         ];
     }
