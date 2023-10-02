@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
-use App\Http\Requests\UserUpdateRequest;
+
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -18,6 +18,7 @@ class UserService
         $data['password'] = Hash::make($data['password']);
         $user = new User($data);
         $user->save();
+      
         return $user;
     }
     public function login(LoginRequest $request): array
@@ -34,15 +35,15 @@ class UserService
         return ['user' => $user, 'token' => $token->plainTextToken];
     }
 
-    public function update(UserUpdateRequest $request) : User
+    public function update(RegisterRequest $request) : User
     {
+      
         $user = auth()->user();
         if($user){
-           $data = $request->toArray();
-           $data['password'] = Hash::make($data['password']);
-           $user = new User($data);
-           $user->save();
-           return $user;
+            $data = $request->toArray();
+             $data['password'] = Hash::make($data['password']);
+            $user->update($data);
+            return $user;
         }
         throw new NotFoundHttpException("User  not found");
     }
