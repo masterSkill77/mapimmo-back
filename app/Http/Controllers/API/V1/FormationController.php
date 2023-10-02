@@ -9,6 +9,7 @@ use App\Services\FormationService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class FormationController extends Controller
@@ -29,11 +30,26 @@ class FormationController extends Controller
         return response()->json($formations);
     }
 
-    public function store(CreateFormationRequest $request) : JsonResponse
+    public function store(CreateFormationRequest $request): JsonResponse
     {
         $data = $request->validated();
         $data['uuid'] = Str::uuid();
         $formation = $this->formationService->store($data);
         return response()->json($formation);
+    }
+    public function getMyCourse(): JsonResponse
+    {
+        $user = auth()->user();
+        $formation = $this->formationService->getUserFormation($user->id);
+
+        return response()->json($formation);
+    }
+
+    public function takeFormation(string $id): JsonResponse
+    {
+        $user = auth()->user();
+        $formation = $this->formationService->getByUuid($id);
+        $taken = $this->formationService->subscribeUserToFormation($user->id, $formation->id);
+        return response()->json($taken, Response::HTTP_CREATED);
     }
 }

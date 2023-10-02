@@ -40,6 +40,7 @@ Route::prefix('/v1')->group(function () {
         Route::delete('/{id}', [FormationController::class, 'delete']);
         Route::prefix('/{id}')->group(function () {
             Route::post('/question', [QuestionController::class, 'store']);
+            Route::post('/take-course', [FormationController::class, 'takeFormation'])->middleware('auth:sanctum');
         });
     });
     Route::prefix("/chapter")->group(function () {
@@ -67,5 +68,9 @@ Route::prefix('/v1')->group(function () {
 
     Route::prefix('/quizz')->group(function () {
         Route::post('/', [QuizzController::class, 'storeQuizz'])->middleware(['auth:sanctum']);
+    });
+
+    Route::prefix('/dashboard')->group(function () {
+        Route::get('/my-plateforme', [FormationController::class, 'getMyCourse'])->middleware('auth:sanctum');
     });
 });
