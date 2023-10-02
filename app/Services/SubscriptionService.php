@@ -24,13 +24,15 @@ class SubscriptionService
             $plan = Plan::where('id', $subscriptionRequest->plan_id)->first();
             $subscription = new Subscription([
                 'user_id' => $user->id,
+                'active' => true,
+                'is_paid' => true
             ]);
-
+            $subscription->save();
             foreach ($subscriptionRequest->plan_subscription as $subscription_plan) {
                 PlanSubscription::create([
-                    'plan_id' => $subscription_plan->plan_id,
+                    'plan_id' => $subscription_plan['plan_id'],
                     'subscription_id' => $subscription->id,
-                    'quantity' => $subscription_plan->quantity
+                    'quantity' => $subscription_plan['quantity']
                 ]);
             }
 
@@ -52,7 +54,7 @@ class SubscriptionService
             // ]);
 
             // event(new Subscribed($subscription, $user));
-            // return $charge;
+            return $subscription;
         });
     }
 }

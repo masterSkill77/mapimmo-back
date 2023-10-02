@@ -25,10 +25,10 @@ class CreateSubscriptionRequest extends FormRequest
     {
         return [
             'token' => 'string',
-            'plan_subscription' => [
-                '*.plan_id' => 'required|integer',
-                '*.quantity' => 'required|integer'
-            ]
+            'plan_subscription' => 'array|min:0',
+            'plan_subscription.*' => 'array|min:0',
+            'plan_subscription.*.plan_id' => 'required|int',
+            'plan_subscription*.quantity' => 'required|int'
         ];
     }
 }
