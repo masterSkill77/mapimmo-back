@@ -12,27 +12,31 @@ class FormationService implements IService
     public function store($data): Formation
     {
         return Formation::create($data);
-
     }
     public function getById(int $formationId): Formation
     {
         return  Formation::where('id', $formationId)->with(['chapters', 'chapters.lessons', 'questions'])->first();
     }
+
+    public function getByUuid(string $formationUuid): Formation
+    {
+        return  Formation::where('uuid', $formationUuid)->with(['chapters', 'chapters.lessons', 'questions'])->first();
+    }
+
     public function getAll(): Collection
     {
         return Formation::with(['chapters', 'chapters.lessons', 'questions'])->get();
     }
-    
-    public function update($data, int $formationId) : Formation{
-        
+
+    public function update($data, int $formationId): Formation
+    {
+
         return Formation::where('id', $formationId)->update($data);
     }
 
-    public function delete($formationId) :Formation
+    public function delete($formationId): Formation
     {
 
         return Formation::where('id', $formationId)->delete();
-    } 
-
+    }
 }
-

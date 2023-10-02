@@ -28,8 +28,7 @@ class CreateQuestionRequest extends FormRequest
             'question_type' => 'int|required',
             'question_order' => 'int|required',
             'answers' => 'string|required',
-            'correct_answer' => 'array|required',
-            'formation_id' => 'int|required'
+            'correct_answer' => 'string|required',
         ];
     }
 }

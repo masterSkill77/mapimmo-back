@@ -5,6 +5,7 @@ use App\Http\Controllers\API\V1\FormationController;
 
 use App\Http\Controllers\API\V1\LessonController;
 use App\Http\Controllers\API\V1\PlanController;
+use App\Http\Controllers\API\V1\QuestionController;
 use App\Http\Controllers\API\V1\SubscriptionController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -36,6 +37,9 @@ Route::prefix('/v1')->group(function () {
         Route::post('/', [FormationController::class, 'store']);
         Route::put('/{id}', [FormationController::class, 'update']);
         Route::delete('/{id}', [FormationController::class, 'delete']);
+        Route::prefix('/{id}')->group(function () {
+            Route::post('/question', [QuestionController::class, 'store']);
+        });
     });
     Route::prefix("/chapter")->group(function () {
         Route::get('/', [ChapterController::class, 'index']);
@@ -51,7 +55,6 @@ Route::prefix('/v1')->group(function () {
         Route::post("register", RegisterController::class);
         Route::post("login", LoginController::class);
         Route::middleware('auth:sanctum')->put("/{id}", [UserController::class, 'update']);
-    
     });
     Route::prefix('/subscription')->group(function () {
         Route::post('subscribe', [SubscriptionController::class, 'subscribeToModule'])->middleware('auth:sanctum');
