@@ -28,8 +28,8 @@ class Formation extends Model
         return $this->hasMany(Question::class, 'formation_id');
     }
 
-    public function chapters(): BelongsTo
+    public function chapters(): HasMany
     {
-        return $this->belongsTo(Chapter::class, 'formation_id');
+        return $this->hasMany(Chapter::class, 'formation_id');
     }
 }
