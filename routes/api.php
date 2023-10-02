@@ -6,6 +6,7 @@ use App\Http\Controllers\API\V1\FormationController;
 use App\Http\Controllers\API\V1\LessonController;
 use App\Http\Controllers\API\V1\PlanController;
 use App\Http\Controllers\API\V1\QuestionController;
+use App\Http\Controllers\API\V1\QuizzController;
 use App\Http\Controllers\API\V1\SubscriptionController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -62,5 +63,9 @@ Route::prefix('/v1')->group(function () {
 
     Route::prefix('/plan')->group(function () {
         Route::post('/', [PlanController::class, 'store']);
+    });
+
+    Route::prefix('/quizz')->group(function () {
+        Route::post('/', [QuizzController::class, 'storeQuizz'])->middleware(['auth:sanctum']);
     });
 });
