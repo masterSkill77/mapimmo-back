@@ -64,6 +64,7 @@ Route::prefix('/v1')->group(function () {
 
     Route::prefix('/plan')->group(function () {
         Route::post('/', [PlanController::class, 'store']);
+        Route::get('/', [PlanController::class, 'index']);
     });
 
     Route::prefix('/quizz')->group(function () {
