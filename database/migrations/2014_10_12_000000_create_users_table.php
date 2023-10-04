@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->string('card_number');
-            $table->tinyInteger('card_month_expires');
+            $table->string('card_month_expires');
             $table->integer('card_year_expires');
             $table->time('hour_remains')->nullable();
             $table->timestamps();
