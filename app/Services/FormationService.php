@@ -16,17 +16,17 @@ class FormationService implements IService
     }
     public function getById(int $formationId): Formation
     {
-        return  Formation::where('id', $formationId)->with(['chapters', 'chapters.lessons', 'questions'])->first();
+        return  Formation::where('id', $formationId)->with(['chapters', 'chapters.lessons', 'questions', 'usersTaking'])->first();
     }
 
     public function getByUuid(string $formationUuid): Formation
     {
-        return  Formation::where('uuid', $formationUuid)->with(['chapters', 'chapters.lessons', 'questions'])->first();
+        return  Formation::where('uuid', $formationUuid)->with(['chapters', 'chapters.lessons', 'questions', 'usersTaking'])->first();
     }
 
     public function getAll(): Collection
     {
-        return Formation::with(['chapters', 'chapters.lessons', 'questions'])->get();
+        return Formation::with(['chapters', 'chapters.lessons', 'questions', 'usersTaking'])->get();
     }
 
     public function update($data, int $formationId): Formation

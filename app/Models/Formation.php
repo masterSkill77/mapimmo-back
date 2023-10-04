@@ -32,4 +32,8 @@ class Formation extends Model
     {
         return $this->hasMany(Chapter::class, 'formation_id');
     }
+    public function usersTaking(): HasMany
+    {
+        return $this->hasMany(UserFormation::class);
+    }
 }
