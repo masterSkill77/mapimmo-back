@@ -13,4 +13,8 @@ class PlanService
         $plan->save();
         return $plan;
     }
+    public function getAllPlan()
+    {
+        return Plan::all();
+    }
 }
