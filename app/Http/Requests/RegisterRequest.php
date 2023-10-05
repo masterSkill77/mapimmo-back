@@ -30,8 +30,8 @@ class RegisterRequest extends FormRequest
             'lastname' => 'required|string',
             'phone_number' => 'required|string',
             'card_number' => 'required|string',
-            'card_month_expires' => 'required|integer',
-            'card_year_expires' => 'required|integer',
+            'card_month_expires' => 'required|string',
+            'card_year_expires' => 'required|string',
         ];
     }
 }
