@@ -26,6 +26,7 @@ class LessonCreateRequest extends FormRequest
         return [
             'lesson_title' => ['required', 'string'],
             'youtube_video' => ['nullable', 'string'],
+            'order' => ['required', 'int'],
             'chapter_id' =>  'exists:App\Models\Chapter,id'
         ];
     }
