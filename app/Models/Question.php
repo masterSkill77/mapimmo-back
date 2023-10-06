@@ -17,4 +17,8 @@ class Question extends Model
         'correct_answer',
         'formation_id'
     ];
+
+    protected $hidden = [
+        'correct_answer'
+    ];
 }

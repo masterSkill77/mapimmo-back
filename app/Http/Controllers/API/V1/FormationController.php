@@ -24,6 +24,15 @@ class FormationController extends Controller
             throw new NotFoundHttpException("Formation with `$formationId` not found");
         return response()->json($formation);
     }
+
+    public function getByUuid(string $formationUuid): JsonResponse
+    {
+        $formation = $this->formationService->getByUuid($formationUuid);
+        if (!$formation)
+            throw new NotFoundHttpException("Formation with `$formationUuid` not found");
+        return response()->json($formation);
+    }
+
     public function index(): JsonResponse
     {
         $formations = $this->formationService->getAll();

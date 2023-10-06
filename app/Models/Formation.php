@@ -36,4 +36,8 @@ class Formation extends Model
     {
         return $this->hasMany(UserFormation::class);
     }
+    public function commentaires(): HasMany
+    {
+        return $this->hasMany(Commentaire::class);
+    }
 }

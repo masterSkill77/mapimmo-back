@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\V1\ChapterController;
+use App\Http\Controllers\API\V1\CommentaireController;
 use App\Http\Controllers\API\V1\FormationController;
 
 use App\Http\Controllers\API\V1\LessonController;
@@ -35,6 +36,7 @@ Route::prefix('/v1')->group(function () {
     Route::prefix("/formation")->group(function () {
         Route::get('/', [FormationController::class, 'index']);
         Route::get('/{id}', [FormationController::class, 'getById']);
+        Route::get('/uuid/{formationUuid}', [FormationController::class, 'getByUuid']);
         Route::post('/', [FormationController::class, 'store']);
         Route::put('/{id}', [FormationController::class, 'update']);
         Route::delete('/{id}', [FormationController::class, 'delete']);
@@ -73,5 +75,10 @@ Route::prefix('/v1')->group(function () {
 
     Route::prefix('/dashboard')->group(function () {
         Route::get('/my-plateforme', [FormationController::class, 'getMyCourse'])->middleware('auth:sanctum');
+    });
+
+    Route::prefix('/commentaire')->group(function () {
+        Route::post('/store', [CommentaireController::class, 'sendCommentaire']);
+        Route::get('/{uuid}', [CommentaireController::class, 'getCommentsByFormationUuid']);
     });
 });

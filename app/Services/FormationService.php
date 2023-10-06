@@ -16,17 +16,17 @@ class FormationService implements IService
     }
     public function getById(int $formationId): Formation
     {
-        return  Formation::where('id', $formationId)->with(['chapters', 'chapters.lessons', 'questions', 'usersTaking'])->first();
+        return  Formation::where('id', $formationId)->with(['chapters', 'chapters.lessons',  'usersTaking', 'commentaires', 'commentaires.user', 'commentaires.admin'])->first();
     }
 
     public function getByUuid(string $formationUuid): Formation
     {
-        return  Formation::where('uuid', $formationUuid)->with(['chapters', 'chapters.lessons', 'questions', 'usersTaking'])->first();
+        return  Formation::where('uuid', $formationUuid)->with(['chapters', 'chapters.lessons',  'usersTaking', 'commentaires', 'commentaires.user', 'commentaires.admin', 'questions'])->first();
     }
 
     public function getAll(): Collection
     {
-        return Formation::with(['chapters', 'chapters.lessons', 'questions', 'usersTaking'])->get();
+        return Formation::with(['chapters', 'chapters.lessons',  'usersTaking', 'commentaires', 'commentaires.user', 'commentaires.admin'])->get();
     }
 
     public function update($data, int $formationId): Formation
@@ -43,7 +43,7 @@ class FormationService implements IService
 
     public function getUserFormation(int $userId): Collection
     {
-        return UserFormation::with('formation', 'formation.chapters')->where('user_id', $userId)->get();
+        return UserFormation::with('formation', 'formation.chapters', 'formation.commentaires', 'formation.commentaires.user', 'formation.commentaires.admin')->where('user_id', $userId)->get();
     }
     /**
      * Inscription de l'user dans une formation
