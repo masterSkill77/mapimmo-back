@@ -13,10 +13,10 @@ class QuizzService
         $question = Question::where('id', $questionId)->first();
         $validated = false;
         if ($question->question_type == Question::TRUE_OR_FALSE)
-            if ($answer == $question->answer)
+            if ($answer == $question->correct_answer)
                 $validated = true;
             else {
-                $correctAnswer = array_diff_assoc(explode('|', $answer), explode('|', $question->answer));
+                $correctAnswer = array_diff_assoc(explode('|', $answer), explode('|', $question->correct_answer));
                 if (count($correctAnswer) == 0)
                     $validated = true;
             }
