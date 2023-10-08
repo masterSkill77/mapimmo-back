@@ -75,6 +75,7 @@ Route::prefix('/v1')->group(function () {
 
     Route::prefix('/dashboard')->group(function () {
         Route::get('/my-plateforme', [FormationController::class, 'getMyCourse'])->middleware('auth:sanctum');
+        Route::get('/my-quizz', [QuizzController::class, 'getMyQuizz'])->middleware('auth:sanctum');
     });
 
     Route::prefix('/commentaire')->group(function () {

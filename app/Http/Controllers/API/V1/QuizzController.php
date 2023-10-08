@@ -7,6 +7,7 @@ use App\Http\Requests\Quizz\CreateQuizzRequest;
 use App\Services\QuizzService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class QuizzController extends Controller
 {
@@ -17,8 +18,18 @@ class QuizzController extends Controller
     public function storeQuizz(CreateQuizzRequest $request): JsonResponse
     {
         $user = auth()->user();
-        $quizz = $this->quizzService->takeQuizz($user, $request->question_id, $request->answer);
+        $quizzs = [];
+        foreach ($request->quizz as $quizz) {
+            $quizzs[] = $this->quizzService->takeQuizz($user, $quizz['question_id'], $quizz['answer']);
+        }
 
-        return response()->json($quizz);
+        return response()->json($quizzs, Response::HTTP_CREATED);
+    }
+    public function getMyQuizz()
+    {
+        $user = auth()->user();
+        $myQuizzes = $this->quizzService->getQuizzForUser($user->id);
+
+        return response()->json($myQuizzes);
     }
 }

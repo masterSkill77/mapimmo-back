@@ -12,6 +12,12 @@ class Quizz extends Model
     protected $fillable = [
         'question_id',
         'user_id',
-        'answer'
+        'answer',
+        'validated'
     ];
+
+    public function question()
+    {
+        return $this->belongsTo(Question::class);
+    }
 }
