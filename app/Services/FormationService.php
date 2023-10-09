@@ -12,6 +12,7 @@ class FormationService implements IService
 {
     public function store($data): Formation
     {
+
         return Formation::create($data);
     }
     public function getById(int $formationId): Formation

@@ -20,7 +20,8 @@ class Formation extends Model
         'prerequisites',
         'included',
         'uuid',
-        'labels'
+        'labels',
+        'photo'
     ];
 
     public function questions(): HasMany

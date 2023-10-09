@@ -8,6 +8,7 @@ use App\Models\Formation;
 use App\Services\FormationService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -41,10 +42,13 @@ class FormationController extends Controller
 
     public function store(CreateFormationRequest $request): JsonResponse
     {
+        $path = $request->file('photo')->storeAs('public/formation', time() . '.' . $request->file('photo')->getClientOriginalExtension());
         $data = $request->validated();
+        $path = str_replace('public/', '', $path);
+        $data['photo'] = '/' . $path;
         $data['uuid'] = Str::uuid();
         $formation = $this->formationService->store($data);
-        return response()->json($formation);
+        return response()->json($formation, Response::HTTP_CREATED);
     }
     public function getMyCourse(): JsonResponse
     {
