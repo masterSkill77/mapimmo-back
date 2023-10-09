@@ -7,6 +7,7 @@ use App\Http\Requests\Plan\CreatePlanRequest;
 use App\Services\PlanService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use App\Http\Requests\PayRequest;
 
 class PlanController extends Controller
 {
@@ -22,5 +23,10 @@ class PlanController extends Controller
     {
         $plans = $this->planService->getAllPlan();
         return response()->json($plans);
+    }
+    public function pay(PayRequest $payrequest) 
+    {
+        $plan = $this->planService->payPlan($payrequest);
+        return response()->json($plan);
     }
 }
