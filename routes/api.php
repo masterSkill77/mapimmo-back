@@ -15,6 +15,7 @@ use App\Http\Controllers\Auth\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -82,4 +83,9 @@ Route::prefix('/v1')->group(function () {
         Route::post('/store', [CommentaireController::class, 'sendCommentaire']);
         Route::get('/{uuid}', [CommentaireController::class, 'getCommentsByFormationUuid']);
     });
+    
+    Route::post('/payment',[PlanController::class, 'pay'])->middleware(['auth:sanctum']);
+
 });
+
+
