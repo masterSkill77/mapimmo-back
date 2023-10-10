@@ -24,8 +24,10 @@ class CreateQuizzRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'question_id' => 'required|int',
-            'answer' => 'string|required'
+            'quizz' => 'array|required',
+            'quizz.*' => 'array|required',
+            'quizz.*.question_id' => 'required|int',
+            'quizz.*.answer' => 'string|required'
         ];
     }
 }
