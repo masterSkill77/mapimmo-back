@@ -14,6 +14,7 @@ class SubscriptionController extends Controller
     }
     public function subscribeToModule(CreateSubscriptionRequest $createSubscriptionRequest)
     {
+       
         $user = auth()->user();
         $subscription = $this->subscriptionService->subscribeUser($user, $createSubscriptionRequest);
         return response()->json($subscription);

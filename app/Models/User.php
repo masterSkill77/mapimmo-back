@@ -27,7 +27,8 @@ class User extends Authenticatable
         'card_year_expires',
         'enterprise_name',
         'lastname',
-        'phone_number'
+        'phone_number',
+        'available_hour'
     ];
 
     /**
