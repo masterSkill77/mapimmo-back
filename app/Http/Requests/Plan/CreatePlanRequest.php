@@ -26,7 +26,8 @@ class CreatePlanRequest extends FormRequest
         return [
             'title' => 'string|required|bail',
             'price' => 'integer|required',
-            'duration' => 'required|regex:/(\d+\:\d+)/'
+            'duration' => 'required|regex:/(\d+\:\d+)/',
+            'sale_price' => 'nullable|numeric'
         ];
     }
 }
