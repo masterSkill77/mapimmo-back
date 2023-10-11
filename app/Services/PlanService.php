@@ -23,16 +23,16 @@ class PlanService
     public function payPlan(PayRequest $payrequest)
     {
         Stripe::setApiKey(env('STRIPE_SECRET'));
-        
+
         $payment_method = $payrequest->paymentId;
-        $amount = $payrequest->amount; 
+        $amount = $payrequest->amount;
         $currency = $payrequest->currency;
     try{
         $paymentIntent = \Stripe\PaymentIntent::create([
             'payment_method' => $payment_method,
             'amount' => $amount,
-            'currency' => $currency,
-           
+            'currency' => 'eur',
+
         ]);
         return $paymentIntent;
     } catch(\Exception $e){
