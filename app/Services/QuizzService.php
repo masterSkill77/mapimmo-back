@@ -21,7 +21,7 @@ class QuizzService
                     $validated = true;
             }
 
-        $quizz = new Quizz([
+        $quizz = Quizz::updateOrCreate([
             'user_id' => $user->id,
             'question_id' => $questionId,
             'answer' => $answer,
