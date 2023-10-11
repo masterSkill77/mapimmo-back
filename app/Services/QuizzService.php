@@ -21,14 +21,26 @@ class QuizzService
                     $validated = true;
             }
 
-        $quizz = Quizz::updateOrCreate([
-            'user_id' => $user->id,
-            'question_id' => $questionId,
-            'answer' => $answer,
-            'validated' => $validated
-        ]);
-
-        $quizz->save();
+        $quizz = Quizz::where(
+            'user_id',
+            $user->id
+        )->where(
+            'question_id',
+            $questionId
+        )->first();
+        if ($quizz) {
+            $quizz->answer = $answer;
+            $quizz->validated = $validated;
+            $quizz->update();
+        } else {
+            $quizz = new Quizz([
+                'user_id' => $user->id,
+                'question_id' => $questionId,
+                'answer' => $answer,
+                'validated' => $validated
+            ]);
+            $quizz->save();
+        }
         return $quizz;
     }
 
