@@ -47,6 +47,7 @@ Route::prefix('/v1')->group(function () {
         Route::get('/', [ChapterController::class, 'index']);
         Route::get('/{id}', [ChapterController::class, 'getById']);
         Route::post('/', [ChapterController::class, 'store']);
+        Route::put('/formation', [ChapterController::class, 'updateChapiterInFormation']);
         Route::put('/{id}', [ChapterController::class, 'update']);
         Route::delete('/{id}', [ChapterController::class, 'delete']);
     });
