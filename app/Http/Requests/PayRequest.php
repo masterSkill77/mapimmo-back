@@ -24,7 +24,6 @@ class PayRequest extends FormRequest
         return [
             'payment_method' => 'required|string',
             'amount' => 'required|integer',
-            'currency' => 'required',
         ];
     }
 }
