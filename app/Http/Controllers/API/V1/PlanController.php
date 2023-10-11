@@ -8,6 +8,7 @@ use App\Services\PlanService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\PayRequest;
+use Barryvdh\DomPDF\PDF;
 
 class PlanController extends Controller
 {
@@ -28,5 +29,14 @@ class PlanController extends Controller
     {
         $plan = $this->planService->payPlan($payrequest);
         return response()->json($plan);
+    }
+
+    public function generateInvoice(Request $request)
+    {
+        $data = $request->all();
+
+        $pdf = PDF::loadView('invoice', $data);
+
+        return $pdf->download('invoice.pdf');
     }
 }
