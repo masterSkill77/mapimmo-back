@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Quizz;
+namespace App\Http\Requests;
 
-use App\Http\Requests\ValidationErrors;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateQuizzRequest extends FormRequest
+class PayRequest extends FormRequest
 {
-    use ValidationErrors;
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -24,10 +22,11 @@ class CreateQuizzRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'quizz' => 'array|required',
-            'quizz.*' => 'array|required',
-            'quizz.*.question_id' => 'required|int',
-            'quizz.*.answer' => 'string|required'
+            'payment_method' => 'required|string',
+            'amount' => 'required|integer',
+            'email' => 'required|string',
+            'name' => 'required|string',
+            'phone' => 'required|string',
         ];
     }
 }

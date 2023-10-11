@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Quizz;
+namespace App\Http\Requests\Commentaire;
 
 use App\Http\Requests\ValidationErrors;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateQuizzRequest extends FormRequest
+class CreateCommentaireRequest extends FormRequest
 {
     use ValidationErrors;
     /**
@@ -24,10 +24,11 @@ class CreateQuizzRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'quizz' => 'array|required',
-            'quizz.*' => 'array|required',
-            'quizz.*.question_id' => 'required|int',
-            'quizz.*.answer' => 'string|required'
+            'formation_id' => 'required|int',
+            'user_id' => 'int',
+            'admin_id' => 'int',
+            'text' => 'required|string',
+            'response_to' => 'int',
         ];
     }
 }

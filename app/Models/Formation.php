@@ -20,7 +20,8 @@ class Formation extends Model
         'prerequisites',
         'included',
         'uuid',
-        'labels'
+        'labels',
+        'photo'
     ];
 
     public function questions(): HasMany
@@ -35,5 +36,9 @@ class Formation extends Model
     public function usersTaking(): HasMany
     {
         return $this->hasMany(UserFormation::class);
+    }
+    public function commentaires(): HasMany
+    {
+        return $this->hasMany(Commentaire::class);
     }
 }

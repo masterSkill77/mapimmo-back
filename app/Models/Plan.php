@@ -12,6 +12,7 @@ class Plan extends Model
     protected $fillable = [
         'title',
         'price',
-        'duration'
+        'duration',
+        'sale_price'
     ];
 }
