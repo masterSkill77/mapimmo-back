@@ -59,4 +59,11 @@ class FormationService implements IService
         $subscribed->save();
         return $subscribed;
     }
+    public function makeLessonDone(int $userId, int $formationId, int $lessonDone): UserFormation
+    {
+        $userFormation = UserFormation::where('user_id', $userId)->where('formation_id', $formationId)->first();
+        $userFormation->current_done = $lessonDone;
+        $userFormation->update();
+        return $userFormation;
+    }
 }

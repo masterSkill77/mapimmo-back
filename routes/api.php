@@ -44,6 +44,7 @@ Route::prefix('/v1')->group(function () {
         Route::prefix('/{id}')->group(function () {
             Route::post('/question', [QuestionController::class, 'store']);
             Route::post('/take-course', [FormationController::class, 'takeFormation'])->middleware('auth:sanctum');
+            Route::post('/make-done', [FormationController::class, 'makeLessonDone'])->middleware('auth:sanctum');
         });
     });
     Route::prefix("/chapter")->group(function () {
@@ -83,10 +84,7 @@ Route::prefix('/v1')->group(function () {
         Route::post('/store', [CommentaireController::class, 'sendCommentaire']);
         Route::get('/{uuid}', [CommentaireController::class, 'getCommentsByFormationUuid']);
     });
-    
-    Route::post('/payment',[PlanController::class, 'pay'])->middleware(['auth:sanctum']);
-    Route::post('/download-invoice',[PlanController::class, 'generateInvoice']);
 
+    Route::post('/payment', [PlanController::class, 'pay'])->middleware(['auth:sanctum']);
+    Route::post('/download-invoice', [PlanController::class, 'generateInvoice']);
 });
-
-
