@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Events\UserCreated;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 
@@ -18,7 +19,7 @@ class UserService
         $data['password'] = Hash::make($data['password']);
         $user = new User($data);
         $user->save();
-      
+        event(new UserCreated($user));
         return $user;
     }
     public function login(LoginRequest $request): array

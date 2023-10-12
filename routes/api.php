@@ -12,6 +12,7 @@ use App\Http\Controllers\API\V1\SubscriptionController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\API\V1\OrderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -88,4 +89,5 @@ Route::prefix('/v1')->group(function () {
 
     Route::post('/payment', [PlanController::class, 'pay'])->middleware(['auth:sanctum']);
     Route::post('/download-invoice', [PlanController::class, 'generateInvoice']);
+    Route::apiResource('/order', OrderController::class)->middleware(['auth:sanctum']);
 });
