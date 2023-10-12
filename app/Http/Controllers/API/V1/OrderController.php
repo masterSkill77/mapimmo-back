@@ -40,18 +40,20 @@ class OrderController extends Controller
     public function generateInvoice($request)
     {
         
-            $data = Order::find($request);
+        $order = Order::find( $request)->with('user')->first();
 
-            $pdf = PDF::loadView('invoice',['data'=>$data]);
+            $pdf = PDF::loadView('invoice',['order'=>$order]);
 
         return $pdf->download('invoice.pdf');
     }
     /**
      * Display the specified resource.
      */
-    public function show(Order $order)
+    public function show($id)
     {
-        //
+    
+        $order = Order::find( $id)->with('user')->first();
+        return  view('invoice', ["order" => $order]);
     }
 
 

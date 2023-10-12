@@ -88,6 +88,6 @@ Route::prefix('/v1')->group(function () {
     });
 
     Route::post('/payment', [PlanController::class, 'pay'])->middleware(['auth:sanctum']);
-    Route::post('/download-invoice', [PlanController::class, 'generateInvoice']);
+    Route::get('/download-invoice/{id}', [OrderController::class, 'generateInvoice']);
     Route::apiResource('/order', OrderController::class)->middleware(['auth:sanctum']);
 });

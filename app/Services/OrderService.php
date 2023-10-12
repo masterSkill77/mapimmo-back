@@ -12,6 +12,7 @@ class OrderService  {
     {
 
         $order = Order::create($data);
+        $order->load('user');
         event(new OrderCreated($order));
         return $order;
 

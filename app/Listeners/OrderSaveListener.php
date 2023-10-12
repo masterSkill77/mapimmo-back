@@ -26,12 +26,10 @@ class OrderSaveListener
      */
     public function handle(OrderCreated $event): void
     {
-        $order = Order::find($event->order->id)->toArray();
+        $order = Order::find( $event->order->id)->with('user')->first();
         $user = $order->user;
-
-
         $dompdf = new Dompdf();
-        $html = view('invoice', ['order' => $order])->render();
+        $html = view('invoice', ["order" => $order])->render();
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4');
         $dompdf->render();

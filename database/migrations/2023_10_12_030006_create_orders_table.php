@@ -18,7 +18,8 @@ return new class extends Migration
             $table->float('total_amount');
             $table->string('total_duration');
             $table->integer('total_quantity');
-            $table->foreignIdFor(User::class);
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
