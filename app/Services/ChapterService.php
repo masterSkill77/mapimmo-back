@@ -11,7 +11,7 @@ class ChapterService implements IService{
     public function store($data) : Chapter
     {
         return Chapter::create($data);
-    } 
+    }
 
     public function getById(int $chapterId): Chapter
     {
@@ -25,7 +25,7 @@ class ChapterService implements IService{
     }
 
     public function update($data, int $chapterId) : Chapter{
-        
+
         return Chapter::where('id', $chapterId)->update($data);
     }
 
@@ -33,5 +33,6 @@ class ChapterService implements IService{
     {
 
         return Chapter::where('id', $chapterId)->delete();
-    } 
+    }
+    
 }
