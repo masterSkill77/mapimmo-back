@@ -13,7 +13,7 @@ class UserFormation extends Model
     protected $fillable = [
         'user_id',
         'formation_id',
-        'is_done'
+        'current_done'
     ];
 
     public function formation(): BelongsTo
