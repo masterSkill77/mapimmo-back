@@ -6,7 +6,7 @@ use App\Services\IService;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
-class ChapterService implements IService{
+class ChapterService{
 
     public function store($data) : Chapter
     {
@@ -24,7 +24,7 @@ class ChapterService implements IService{
         return Chapter::with('lessons')->get();
     }
 
-    public function update($data, int $chapterId) : Chapter{
+    public function update($data, int $chapterId) : int{
 
         return Chapter::where('id', $chapterId)->update($data);
     }
@@ -34,5 +34,5 @@ class ChapterService implements IService{
 
         return Chapter::where('id', $chapterId)->delete();
     }
-    
+
 }
