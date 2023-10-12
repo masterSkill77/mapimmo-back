@@ -44,7 +44,7 @@ class FormationService implements IService
 
     public function getUserFormation(int $userId): Collection
     {
-        return UserFormation::with('formation', 'formation.chapters', 'formation.commentaires', 'formation.commentaires.user', 'formation.commentaires.admin')->where('user_id', $userId)->get();
+        return UserFormation::with('formation', 'formation.chapters', 'formation.chapters.lessons', 'formation.commentaires', 'formation.commentaires.user', 'formation.commentaires.admin')->where('user_id', $userId)->get();
     }
     /**
      * Inscription de l'user dans une formation
@@ -62,8 +62,10 @@ class FormationService implements IService
     public function makeLessonDone(int $userId, int $formationId, int $lessonDone): UserFormation
     {
         $userFormation = UserFormation::where('user_id', $userId)->where('formation_id', $formationId)->first();
-        $userFormation->current_done = $lessonDone;
-        $userFormation->update();
+        if ($userFormation->current_done < $lessonDone) {
+            $userFormation->current_done = $lessonDone;
+            $userFormation->update();
+        }
         return $userFormation;
     }
 }
