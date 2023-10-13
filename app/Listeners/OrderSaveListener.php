@@ -18,19 +18,18 @@ class OrderSaveListener
      */
     public function __construct()
     {
-        
     }
 
     /**
      * Handle the event.
      */
     public function handle(OrderCreated $event): void
-    { 
+    {
         $order = Order::find($event->order->id)->with('user')->first();
-      
+
         $user = $order->user;
         $dompdf = new Dompdf();
-        $html = view('invoice', ["order" => $order])->render();
+        $html = view('invoice', ["orders" => $order])->render();
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4');
         $dompdf->render();
@@ -42,7 +41,6 @@ class OrderSaveListener
             'data' => $pdfContent,
             'filename' => 'facture.pdf'
         ];
-        Mail::to($email)->send(new SendOrderMail($subject, $attachment));
-
+        Mail::to($email)->send(new SendOrderMail($subject, $attachment, $order));
     }
 }

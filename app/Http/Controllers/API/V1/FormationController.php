@@ -71,7 +71,8 @@ class FormationController extends Controller
         $user = auth()->user();
         $formation = $this->formationService->getByUuid($id);
         $lessonDone = (int) $request->input('lesson_done');
-        $taken = $this->formationService->makeLessonDone($user->id, $formation->id, $lessonDone);
+        $isDone = (bool) $request->input('is_done');
+        $taken = $this->formationService->makeLessonDone($user->id, $formation->id, $lessonDone, $isDone);
         return response()->json($taken, Response::HTTP_CREATED);
     }
 }

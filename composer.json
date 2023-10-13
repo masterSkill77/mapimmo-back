@@ -11,6 +11,7 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
+        "masterskill/service-package": "^1.0",
         "stripe/stripe-php": "^12.5"
     },
     "require-dev": {

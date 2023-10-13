@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3aa79274bc7856fa85cb1343760ccdbe",
+    "content-hash": "26c64439936c9753be68305bf8781b5b",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -2021,6 +2021,54 @@
                 "source": "https://github.com/Masterminds/html5-php/tree/2.8.1"
             },
             "time": "2023-05-10T11:58:31+00:00"
+        },
+        {
+            "name": "masterskill/service-package",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/masterSkill77/laravel-make-service.git",
+                "reference": "a64967bd6dad795216639d90833dbf53d0cc7dc6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/masterSkill77/laravel-make-service/zipball/a64967bd6dad795216639d90833dbf53d0cc7dc6",
+                "reference": "a64967bd6dad795216639d90833dbf53d0cc7dc6",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": ">=9.0",
+                "php": ">=8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Masterskill\\ServicePackage\\MakeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Masterskill\\ServicePackage\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Clairmont RAJAONARISON",
+                    "email": "clairmont.rajaonarison@gmail.com"
+                }
+            ],
+            "description": "C'est un package qui permet d'automatiquement créer des services dans Laravel",
+            "support": {
+                "issues": "https://github.com/masterSkill77/laravel-make-service/issues",
+                "source": "https://github.com/masterSkill77/laravel-make-service/tree/1.0.0"
+            },
+            "time": "2023-10-13T05:20:06+00:00"
         },
         {
             "name": "monolog/monolog",

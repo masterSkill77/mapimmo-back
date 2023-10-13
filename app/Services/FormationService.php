@@ -53,17 +53,19 @@ class FormationService implements IService
     {
         $subscribed = new UserFormation([
             'user_id' => $userId,
-            'formation_id' => $formationId
+            'formation_id' => $formationId,
+            'current_done' => 0
         ]);
 
         $subscribed->save();
         return $subscribed;
     }
-    public function makeLessonDone(int $userId, int $formationId, int $lessonDone): UserFormation
+    public function makeLessonDone(int $userId, int $formationId, int $lessonDone, bool $isDone = false): UserFormation
     {
         $userFormation = UserFormation::where('user_id', $userId)->where('formation_id', $formationId)->first();
         if ($userFormation->current_done < $lessonDone) {
             $userFormation->current_done = $lessonDone;
+            $userFormation->is_done = $isDone;
             $userFormation->update();
         }
         return $userFormation;

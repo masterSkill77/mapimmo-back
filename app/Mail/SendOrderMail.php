@@ -16,7 +16,7 @@ class SendOrderMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(public $mailSubject, public $attachement, public $orders)
     {
         //
     }
@@ -27,7 +27,7 @@ class SendOrderMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Facture pour Mapimmo',
+            subject: $this->mailSubject,
         );
     }
 
@@ -48,6 +48,6 @@ class SendOrderMail extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        return $this->attachement;
     }
 }
