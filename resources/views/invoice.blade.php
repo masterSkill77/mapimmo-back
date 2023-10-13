@@ -57,7 +57,7 @@ table tr.items td {
                 <!-- <img src="{{ asset('logo-formation.png') }}" alt="logo mapimmo" width="200" /> -->
             </td>
             <td class="w-half">
-                <h2>N° Facture: </h2>
+                <h2>N° Facture: {{$orders->num_invoice}} </h2>
             </td>
         </tr>
     </table>

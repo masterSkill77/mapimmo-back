@@ -12,7 +12,7 @@ class OrderService  {
     {
 
         $order = Order::create($data);
-        
+  
         event(new OrderCreated($order));
         return $order;
 
@@ -20,7 +20,7 @@ class OrderService  {
 
     public function getAll() :Collection
     {
-        return Order::all();
+        return Order::orderBy('created_at', 'asc')->paginate(5);
     }
 
     public function getById(int $orderId) : Order
