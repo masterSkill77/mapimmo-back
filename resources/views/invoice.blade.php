@@ -25,7 +25,7 @@
 }
 table {
     width: 100%;
-    border-spacing: 0;
+    borders-spacing: 0;
 }
 table.products {
     font-size: 0.875rem;
@@ -65,11 +65,11 @@ table tr.items td {
     <div class="margin-top">
         <table class="w-full">
             <tr>
-          
+         
             <td class="w-half">
-                    <div><h4>{{$order->user->name}} {{$order->user->lastname}}</h4></div>
-                    <div>{{$order->user->email}}</div>
-                    <div>{{$order->user->phone_number}}</div>
+                    <div><h4>{{$orders->user->name}} {{$orders->user->lastname}}</h4></div>
+                    <div>{{$orders->user->email}}</div>
+                    <div>{{$orders->user->phone_number}}</div>
                 </td>
                    
             </tr>
@@ -85,7 +85,7 @@ table tr.items td {
                 <th>Prix</th>
             </tr>
             <tr class="items">
-                @foreach($order->plans as $item) 
+                @foreach($orders->plans as $item) 
                     <td>
                         {{ $item['title'] }}
                     </td>
@@ -100,16 +100,15 @@ table tr.items td {
                     </td>
                 @endforeach
             </tr>
-            <tr>
-                <td rowspan="2"> Durée Total</td>
-                <td>{{$order->total_duration}}</td>
-            </tr>
+           
            
         </table>
     </div>
- 
     <div class="total">
-       Prix Total: {{$order->total_amount}} €
+    Durée Total: {{$orders->total_duration}} 
+    </div>
+    <div class="total">
+       Prix Total: {{$orders->total_amount}} €
     </div>
  
     <div class="footer margin-top">

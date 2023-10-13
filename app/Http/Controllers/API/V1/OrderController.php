@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Services\OrderService;
 use App\Http\Requests\Order\CreateOrderRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Http\JsonResponse;
 
 class OrderController extends Controller
 {
@@ -20,11 +21,11 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function  index(): JsonResponse
     {
-        //
+        $orders = $this->orderservice->getAll();
+        return response()->json($orders);
     }
-
 
 
     /**
