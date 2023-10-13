@@ -39,7 +39,7 @@ class OrderSaveListener
         $subject = 'Facture pour la commande';
         $attachment = [
             'data' => $pdfContent,
-            'filename' => 'facture.pdf'
+            'filename' => 'Facture-' . now() . ".pdf"
         ];
         Mail::to($email)->send(new SendOrderMail($subject, $attachment, $order));
     }
