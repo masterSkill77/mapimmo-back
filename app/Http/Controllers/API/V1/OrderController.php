@@ -36,7 +36,7 @@ class OrderController extends Controller
         $user = auth()->user();
         $data = $request->toArray();
         $data['user_id'] = $user->id;
-        $order['num_invoice'] = date('Ymd').rand(100,999);
+        $data['num_invoice'] = date('Ymd').rand(100,999);
         return $this->orderservice->store($data);
     }
     public function generateInvoice($request)
