@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Events\OrderCreated;
 use App\Mail\SendOrderMail;
 use App\Models\Order;
+use Carbon\Carbon;
 use Dompdf\Dompdf;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -28,6 +29,13 @@ class OrderSaveListener
         $order = Order::find($event->order->id)->with('user')->first();
 
         $user = $order->user;
+        // On crée des variables hour et les additionner pour le nouveau availableHour de l'utilisateur
+        $availableHour =  Carbon::createFromFormat('H:i:s', $user->available_hour);
+        $totalDuration =  Carbon::createFromFormat('H:i:s', $order->total_duration);
+
+        $resultat = $availableHour->addHours($totalDuration->hour)->addMinutes($totalDuration->minute)->addSeconds($totalDuration->second);
+        $user->available_hour = $resultat->format('H:i:s');
+        $user->update();
         $dompdf = new Dompdf();
         $html = view('invoice', ["orders" => $order])->render();
         $dompdf->loadHtml($html);
