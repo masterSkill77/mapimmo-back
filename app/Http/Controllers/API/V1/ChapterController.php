@@ -47,38 +47,5 @@ class ChapterController extends Controller
         } catch (Exception $e) {
             throw $e;
         }
-        /**
-         * Tous ces codes, il faut les mettre dans un service
-         */
-        // Créez un tableau associatif pour stocker la somme des ordres par formationId
-        // $orderSumByFormation = [];
-
-        // foreach ($orders as $order) {
-        //     $formationId = $order['formationId'];
-        //     $newOrder = $order['order'];
-
-        //     if (!isset($orderSumByFormation[$formationId])) {
-        //         $orderSumByFormation[$formationId] = 0;
-        //     }
-
-        //     // Ajoutez la valeur d'ordre à la somme existante
-        //     $orderSumByFormation[$formationId] += $newOrder;
-        // }
-
-        // // Parcourez le tableau orderSumByFormation et mettez à jour les chapitres
-        // foreach ($orderSumByFormation as $formationId => $totalOrder) {
-        //     $chapters = Chapter::where('formation_id', $formationId)->get();
-
-        //     if ($chapters->isEmpty()) {
-        //         throw new NotFoundHttpException("No chapters found for Formation ID $formationId");
-        //     }
-
-        //     foreach ($chapters as $chapter) {
-        //         $chapter->order = $totalOrder;
-        //         $chapter->save();
-        //     }
-        // }
-
-
     }
 }
