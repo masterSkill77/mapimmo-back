@@ -11,7 +11,7 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        'plans','total_amount', 'total_quantity','total_duration','user_id'
+        'plans','total_amount', 'total_quantity','total_duration','user_id', 'num_invoice'
     ];
 
     protected $casts = [

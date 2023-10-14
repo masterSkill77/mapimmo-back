@@ -20,7 +20,7 @@ class OrderService  {
 
     public function getAll() :Collection
     {
-        return Order::orderBy('created_at', 'asc')->paginate(5);
+        return Order::orderBy('created_at', 'asc')->limit(5)->get();
     }
 
     public function getById(int $orderId) : Order
