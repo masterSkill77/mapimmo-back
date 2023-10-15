@@ -19,7 +19,7 @@ class SendConfirmationMail extends Mailable
      */
     public function __construct(public User $user)
     {
-        $this->user = $user;
+        // $this->user = $user;
     }
 
     /**
@@ -28,7 +28,7 @@ class SendConfirmationMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Send Confirmation Mail',
+            subject: 'Welcome',
         );
     }
 
