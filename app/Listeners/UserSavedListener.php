@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
-class UserSavedListener implements ShouldQueue
+class UserSavedListener
 {
 
     protected $stripe;
