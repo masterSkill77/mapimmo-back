@@ -58,6 +58,7 @@ Route::prefix('/v1')->group(function () {
     });
     Route::prefix("/lessons")->group(function () {
         Route::apiResource('/', LessonController::class);
+        Route::put('/chapter', [LessonController::class, 'update']);
     });
     Route::prefix("/auth")->group(function () {
         Route::post("register", RegisterController::class);
@@ -71,6 +72,9 @@ Route::prefix('/v1')->group(function () {
     Route::prefix('/plan')->group(function () {
         Route::post('/', [PlanController::class, 'store']);
         Route::get('/', [PlanController::class, 'index']);
+        Route::get('/{id}', [PlanController::class, 'getById']);
+        Route::put('/{id}', [PlanController::class, 'update']);
+        Route::delete('/{id}', [PlanController::class, 'delete']);
     });
 
     Route::prefix('/quizz')->group(function () {

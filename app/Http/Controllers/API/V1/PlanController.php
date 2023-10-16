@@ -8,6 +8,7 @@ use App\Services\PlanService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\PayRequest;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PlanController extends Controller
 {
@@ -30,5 +31,34 @@ class PlanController extends Controller
         return response()->json($plan);
     }
 
+    public function update(Request $request, $planId): JsonResponse
+    {
+        $plan = $this->planService->update($request->all(), $planId);
+        if ($plan) {
+            return response()->json($plan, 200);
+        } else {
+            throw new NotFoundHttpException("Erreur de la modification");
+        }
+    }
+
+    public function getById($planId): JsonResponse
+    {
+        $plan = $this->planService->getById($planId);
+        if(!$plan) {
+            throw new NotFoundHttpException("plan `$planId` not found");
+        }
+
+        return response()->json($plan);
+    }
+
+    public function delete($planId): JsonResponse
+    {
+        $plan = $this->planService->delete($planId);
+        if ($plan) {
+            return response()->json($plan);
+        } else {
+            throw new NotFoundHttpException("Erreur de la suppresion");
+        }
+    }
 
 }

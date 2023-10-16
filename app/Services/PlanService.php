@@ -57,6 +57,29 @@ class PlanService
         return response()->json(['error' => $e->getMessage()], 500);
     }
     }
+
+    public function update(array $data, int $planId): Plan
+    {
+        $plan = Plan::find($planId);
+
+        if (!$plan) {
+            return null; 
+        }
+        $plan->fill($data);
+        $plan->save();
+    
+        return $plan;
+    }
+
+    public function delete($plan): string
+    {
+        return Plan::where('id', $plan)->delete();
+    }
+
+    public function getById(int $plan): ?Plan
+    {
+        return Plan::find($plan);
+    }
 }
 
 

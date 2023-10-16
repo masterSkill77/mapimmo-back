@@ -48,4 +48,34 @@ class ChapterController extends Controller
             throw $e;
         }
     }
+
+    public function update(Request $request, $chapterId): JsonResponse
+    {
+        $chapter = $this->chapterservice->update($request->all(), $chapterId);
+        if ($chapter) {
+            return response()->json($chapter, 200);
+        } else {
+            throw new NotFoundHttpException("Erreur de la modification");
+        }
+    }
+
+    public function getById($chapterId): JsonResponse
+    {
+        $chapter = $this->chapterservice->chapterGetById($chapterId);
+        if(!$chapter) {
+            throw new NotFoundHttpException("Chapter `$chapterId` not found");
+        }
+
+        return response()->json($chapter);
+    }
+
+    public function delete($chapterId): JsonResponse
+    {
+        $chapter = $this->chapterservice->delete($chapterId);
+        if ($chapter) {
+            return response()->json($chapter);
+        } else {
+            throw new NotFoundHttpException("Erreur de la suppresion");
+        }
+    }
 }
