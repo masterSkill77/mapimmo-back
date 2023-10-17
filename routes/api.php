@@ -59,6 +59,8 @@ Route::prefix('/v1')->group(function () {
     Route::prefix("/lessons")->group(function () {
         Route::apiResource('/', LessonController::class);
         Route::put('/chapter', [LessonController::class, 'update']);
+        Route::get('/', [LessonController::class, 'index']);
+        Route::get('/{id}', [LessonController::class, 'getById']);
     });
     Route::prefix("/auth")->group(function () {
         Route::post("register", RegisterController::class);

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Chapter;
 use App\Models\Lesson;
 use Illuminate\Database\Eloquent\Collection;
 use App\Services\IService;
@@ -15,7 +16,7 @@ class LessonService implements IService
 
     public function getAll() :Collection
     {
-        return Lesson::all();
+        return Chapter::with('lessons')->get();
     }
 
     public function getById(int $lessonId) : Lesson
