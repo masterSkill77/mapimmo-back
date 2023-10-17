@@ -29,10 +29,14 @@ class ChapterService{
         return Chapter::where('id', $chapterId)->update($data);
     }
 
-    public function delete($chapterId) :Chapter
+    public function delete($chapterId): string
     {
-
         return Chapter::where('id', $chapterId)->delete();
     }
 
+    public function chapterGetById(int $chapterId): ?Chapter
+    {
+        return Chapter::find($chapterId);
+    }
+    
 }
