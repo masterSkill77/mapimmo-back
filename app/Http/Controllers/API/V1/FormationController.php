@@ -61,8 +61,10 @@ class FormationController extends Controller
     public function takeFormation(string $id): JsonResponse
     {
         $user = auth()->user();
+        if (!$user->available_hour)
+            return response()->json('CANNOT_TAKE_COURSE', Response::HTTP_UNPROCESSABLE_ENTITY);
         $formation = $this->formationService->getByUuid($id);
-        $taken = $this->formationService->subscribeUserToFormation($user->id, $formation->id);
+        $taken = $this->formationService->subscribeUserToFormation($user, $formation);
         return response()->json($taken, Response::HTTP_CREATED);
     }
 
