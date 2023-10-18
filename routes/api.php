@@ -106,4 +106,9 @@ Route::prefix('/v1')->group(function () {
         Route::put('/{id}', [QuestionController::class, 'update']);
         Route::delete('/{id}', [QuestionController::class, 'delete']);
     });
+    Route::prefix("/user")->group(function () {
+        Route::get("/", [UserController::class, 'index']);
+        Route::post("/register", RegisterController::class);
+        Route::put("/{id}", [UserController::class, 'update']);
+    });
 });

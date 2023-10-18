@@ -15,9 +15,15 @@ class UserController extends Controller
     {
     }
 
+    public function index(): JsonResponse
+    {
+        $user = $this->userService->getAllUser();
+        return response()->json($user);
+    }
     public function update(RegisterRequest $request) :JsonResponse{
     
        $user = $this->userService->update($request);
        return response()->json($user);
     }
+
 }
