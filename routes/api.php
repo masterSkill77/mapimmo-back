@@ -105,5 +105,7 @@ Route::prefix('/v1')->group(function () {
     });
     Route::prefix("/user")->group(function () {
         Route::get("/", [UserController::class, 'index']);
+        Route::post("/register", RegisterController::class);
+        Route::put("/{id}", [UserController::class, 'update']);
     });
 });
