@@ -24,9 +24,11 @@ class LessonService implements IService
         return Lesson::findOrFail($lessonId);
     }
     
-    public function update($data, int $lessonId) : Lesson{
+    public function update($data, int $lessonId): Lesson{
         
-        return Lesson::where('id', $lessonId)->update($data);
+        $lesson = Lesson::findOrFail($lessonId);
+        $lesson->update($data);
+        return $lesson;
     }
 
     public function delete($lessonId) :Lesson

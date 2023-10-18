@@ -48,4 +48,9 @@ class UserService
         }
         throw new NotFoundHttpException("User  not found");
     }
+
+    public function getAllUser()
+    {
+        return User::all();
+    }
 }
