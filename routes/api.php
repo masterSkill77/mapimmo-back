@@ -90,7 +90,10 @@ Route::prefix('/v1')->group(function () {
 
     Route::prefix('/commentaire')->group(function () {
         Route::post('/store', [CommentaireController::class, 'sendCommentaire']);
-        Route::get('/{uuid}', [CommentaireController::class, 'getCommentsByFormationUuid']);
+        //Route::get('/{uuid}', [CommentaireController::class, 'getCommentsByFormationUuid']);
+        Route::get('/with-response', [CommentaireController::class, 'getCommentaireswithResponse']);
+        Route::get('/without-response', [CommentaireController::class, 'getCommentaireswithoutResponse']);
+        Route::post('/reply', [CommentaireController::class, 'replyCommentaire'])->middleware('auth:sanctum');
     });
 
     Route::post('/payment', [PlanController::class, 'pay'])->middleware(['auth:sanctum']);
