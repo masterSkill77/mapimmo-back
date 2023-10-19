@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text("prerequisites"); // Prérequis
             $table->text("included"); // Matériels inclus
             $table->string("labels")->nullable();
+            $table->boolean("them")->default(false);
             $table->timestamps();
         });
     }
