@@ -23,7 +23,17 @@ class CommentaireService
         return Commentaire::where('formation_id', $formation->id)->with(['admin', 'user', 'formation'])->get();
     }
     public function index(){
-        return Commentaire::with(['admin', 'user', 'formation'])->get();
+       
+        $user =auth()->user();
+        $commentaire = Commentaire::where('user_id', $user->id)->with(['admin', 'user', 'formation'])->get();
+        $questionAndResponse = [];
+        foreach($commentaire as $question)
+        {
+        $response = Commentaire::where('response_to', $question->id)->get();
+        $questionAndResponse[$question->id] = ['question' => $question, 'responses' => $response];
+
+        } 
+        return $questionAndResponse;  
     } 
 
     public function reply(ReplyCommentaireRequest $replyCommentaireRequest){
