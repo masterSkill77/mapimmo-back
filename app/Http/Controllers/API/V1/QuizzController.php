@@ -26,7 +26,7 @@ class QuizzController extends Controller
         $notValidatedQuestion = array_filter($quizzs, fn ($quizz) => (!$quizz->validated));
         $allValidated = count($notValidatedQuestion) == 0;
         if ($allValidated) {
-            event(new FormationValidated($request->quizz));
+            event(new FormationValidated($request->quizz, $user));
         }
         return response()->json($quizzs, Response::HTTP_CREATED);
     }

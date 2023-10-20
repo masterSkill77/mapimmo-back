@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Attestation;
 use App\Models\Formation;
 use App\Models\User;
 use App\Models\UserFormation;
@@ -59,21 +60,17 @@ class FormationService implements IService
             'formation_id' => $formation->id,
             'current_done' => 0
         ]);
-
-        $availableHour =  Carbon::createFromFormat('H:i:s', $user->available_hour);
-        $totalDuration =  Carbon::createFromFormat('H:i:s', $formation->duration);
-
-        if ($availableHour->lessThanOrEqualTo($totalDuration)) {
-            $availableHour = null; // Si l'heure est inférieure ou égale à la durée, définissez-la sur null
-        } else {
-            // Sinon, soustrayez la durée de la formation de l'heure disponible
-            $availableHour =  $availableHour->subHours($totalDuration->hour)
-                ->subMinutes($totalDuration->minute)
-                ->subSeconds($totalDuration->second);
-        }
-
-        $user->available_hour = $availableHour;
-        $user->save();
+        $attestationService = new AttestationService;
+        $currentUserAttestation = $attestationService->getAttestationForUser($user->id);
+        if (!$currentUserAttestation) {
+            $currentUserAttestation = new Attestation([
+                'user_id' => $user->id,
+                'deliver' => false,
+                'formations' => $formation->id
+            ]);
+        } else
+            $currentUserAttestation->formations .= ",$formation->id";
+        $currentUserAttestation->save();
         $subscribed->save();
         return $subscribed;
     }

@@ -31,10 +31,13 @@ class OrderSaveListener
         $user = $order->user;
         // On crée des variables hour et les additionner pour le nouveau availableHour de l'utilisateur
         $availableHour =  Carbon::createFromFormat('H:i:s', $user->available_hour);
+        $hourRemains =  Carbon::createFromFormat('H:i:s', $user->hour_remains);
         $totalDuration =  Carbon::createFromFormat('H:i:s', $order->total_duration);
 
         $resultat = $availableHour->addHours($totalDuration->hour)->addMinutes($totalDuration->minute)->addSeconds($totalDuration->second);
         $user->available_hour = $resultat->format('H:i:s');
+        $resultat = $hourRemains->addHours($totalDuration->hour)->addMinutes($totalDuration->minute)->addSeconds($totalDuration->second);
+        $user->hour_remains = $resultat->format('H:i:s');
         $user->update();
         $dompdf = new Dompdf();
         $html = view('invoice', ["orders" => $order])->render();

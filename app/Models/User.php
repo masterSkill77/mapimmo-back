@@ -28,6 +28,7 @@ class User extends Authenticatable
         'card_year_expires',
         'enterprise_name',
         'lastname',
+        'hour_remains',
         'phone_number',
         'available_hour'
     ];
@@ -61,7 +62,7 @@ class User extends Authenticatable
         return $this->hasMany(UserFormation::class);
     }
 
-    public function orders() :BelongsTo
+    public function orders(): BelongsTo
     {
         return $this->belongsTo(Order::class);
     }

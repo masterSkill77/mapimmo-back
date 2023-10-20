@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -17,7 +18,7 @@ class FormationValidated
     /**
      * Create a new event instance.
      */
-    public function __construct(public $listQuizz)
+    public function __construct(public $listQuizz, public User $user)
     {
         //
     }
