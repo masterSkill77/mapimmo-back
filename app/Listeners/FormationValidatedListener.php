@@ -30,7 +30,7 @@ class FormationValidatedListener
 
         $questionId = $event->listQuizz[0]["question_id"];
         $question = Question::where('id', $questionId)->first();
-        $formation = Formation::where('id', $question->formation_id);
+        $formation = Formation::where('id', $question->formation_id)->first();
 
         $availableHour =  Carbon::createFromFormat('H:i:s', $event->user->available_hour);
         $totalDuration =  Carbon::createFromFormat('H:i:s', $formation->duration);

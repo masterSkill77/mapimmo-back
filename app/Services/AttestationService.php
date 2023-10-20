@@ -27,7 +27,7 @@ class AttestationService
         }
         return $formations;
     }
-    public function getAttestationForUser(int $userId): Attestation
+    public function getAttestationForUser(int $userId): Attestation | null
     {
         return Attestation::where('user_id', $userId)->where('deliver', false)->first();
     }

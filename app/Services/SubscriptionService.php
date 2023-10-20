@@ -35,21 +35,21 @@ class SubscriptionService
                     'subscription_id' => $subscription->id,
                     'quantity' => $subscription_plan['quantity']
                 ]);
-                $duration = $subscription_plan['duration'];
-                $durationPlans = explode(':', $duration);
-                $hoursInMinutes = (int)$durationPlans[0] * 60;
-                $minutes = (int)$durationPlans[1];
-                $available_hours += $hoursInMinutes + $minutes;
+                // $duration = $subscription_plan['duration'];
+                // $durationPlans = explode(':', $duration);
+                // $hoursInMinutes = (int)$durationPlans[0] * 60;
+                // $minutes = (int)$durationPlans[1];
+                // $available_hours += $hoursInMinutes + $minutes;
             }
-            $available_hours_formatted = sprintf(
-                '%02d:%02d:%02d',
-                floor($available_hours / 60),   // Heure
-                $available_hours % 60,          // Minute
-                0                               
-            );
-           
-            $user->update(['available_hour' => $available_hours_formatted]);
-            return $user;
+            // $available_hours_formatted = sprintf(
+            //     '%02d:%02d:%02d',
+            //     floor($available_hours / 60),   // Heure
+            //     $available_hours % 60,          // Minute
+            //     0
+            // );
+
+            // $user->update(['available_hour' => $available_hours_formatted]);
+            // return $user;
             // $customer = $this->stripe->customers->search([
             //     // 'query' => "email: '$user->email'"
             //     // ACTIVATE THIS PART IF FRONTEND IS OK
