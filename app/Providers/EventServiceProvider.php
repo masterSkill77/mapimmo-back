@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\FormationValidated;
 use App\Events\UserCreated;
 use App\Events\OrderCreated;
+use App\Listeners\FormationValidatedListener;
 use App\Listeners\OrderSaveListener;
 use App\Listeners\UserSavedListener;
 use Illuminate\Auth\Events\Registered;
@@ -27,6 +29,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         OrderCreated::class => [
             OrderSaveListener::class
+        ],
+        FormationValidated::class => [
+            FormationValidatedListener::class
         ]
     ];
 

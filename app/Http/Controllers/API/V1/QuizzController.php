@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API\V1;
 
+use App\Events\FormationValidated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Quizz\CreateQuizzRequest;
 use App\Services\QuizzService;
@@ -25,7 +26,7 @@ class QuizzController extends Controller
         $notValidatedQuestion = array_filter($quizzs, fn ($quizz) => (!$quizz->validated));
         $allValidated = count($notValidatedQuestion) == 0;
         if ($allValidated) {
-            // dispatch(new FormationValidated)
+            event(new FormationValidated($request->quizz));
         }
         return response()->json($quizzs, Response::HTTP_CREATED);
     }
