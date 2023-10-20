@@ -37,7 +37,7 @@ class FormationValidatedListener
 
         if ($availableHour->lessThanOrEqualTo($totalDuration)) {
             $availableHour = null; // Si l'heure est inférieure ou égale à la durée, définissez-la sur null
-            $this->attestationService->storeAttestation($event->user);
+            $this->attestationService->deliverAttestation($event->user);
         } else {
             // Sinon, soustrayez la durée de la formation de l'heure disponible
             $availableHour =  $availableHour->subHours($totalDuration->hour)

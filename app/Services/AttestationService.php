@@ -11,8 +11,11 @@ class AttestationService
     {
         // Constructeur de la classe
     }
-    public function storeAttestation(User $user)
+    public function deliverAttestation(User $user)
     {
+        $attestation = $this->getAttestationForUser($user->id);
+        $attestation->deliver = true;
+        $attestation->save();
     }
     public function getAllFormations(Attestation $attestation): array
     {
