@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('formations', function (Blueprint $table) {
-            $table->boolean("them")->default(false);
+            $table->string('theme');
         });
     }
 

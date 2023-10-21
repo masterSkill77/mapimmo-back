@@ -21,7 +21,8 @@ class Formation extends Model
         'included',
         'uuid',
         'labels',
-        'photo'
+        'photo',
+        'theme'
     ];
 
     public function questions(): HasMany
