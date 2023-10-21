@@ -91,6 +91,7 @@ Route::prefix('/v1')->group(function () {
 
     Route::prefix('/commentaire')->group(function () {
         Route::post('/store', [CommentaireController::class, 'sendCommentaire']);
+        Route::get('', [CommentaireController::class, 'getAllCommentaires'])->middleware('auth:sanctum');
         //Route::get('/{uuid}', [CommentaireController::class, 'getCommentsByFormationUuid']);
         Route::get('/with-response', [CommentaireController::class, 'getCommentaireswithResponse']);
         Route::get('/without-response', [CommentaireController::class, 'getCommentaireswithoutResponse']);
