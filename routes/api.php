@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\V1\AttestationController;
 use App\Http\Controllers\API\V1\ChapterController;
 use App\Http\Controllers\API\V1\CommentaireController;
 use App\Http\Controllers\API\V1\FormationController;
@@ -110,5 +111,8 @@ Route::prefix('/v1')->group(function () {
         Route::get("/", [UserController::class, 'index']);
         Route::post("/register", RegisterController::class);
         Route::put("/{id}", [UserController::class, 'update']);
+    });
+    Route::prefix('/attestation')->group(function () {
+        Route::get('/', [AttestationController::class, 'getAllAttestationForUser'])->middleware(['auth:sanctum']);
     });
 });
