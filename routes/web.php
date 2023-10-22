@@ -18,5 +18,5 @@ Route::get('/', function () {
 });
 
 Route::get('/register', function () {
-    return view('mails.register');
+    return view('down_invoice');
 });
