@@ -38,7 +38,7 @@ class SendConfirmationMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mails.registermail',
+            view: 'mails.register',
         );
     }
 
