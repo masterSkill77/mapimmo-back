@@ -111,6 +111,7 @@ Route::prefix('/v1')->group(function () {
         Route::get("/", [UserController::class, 'index']);
         Route::post("/register", RegisterController::class);
         Route::put("/{id}", [UserController::class, 'update']);
+        Route::get("/{id}", [UserController::class, 'getById']);
     });
     Route::prefix("/theme")->group(function () {
         Route::get("/", [ThemeController::class, 'index']);
