@@ -8,6 +8,7 @@ use App\Http\Requests\UserUpdateRequest;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class UserController extends Controller
 {
@@ -26,4 +27,13 @@ class UserController extends Controller
        return response()->json($user);
     }
 
+    public function getById($userId)
+    {
+        $user = $this->userService->getById($userId);
+        if(!$user) {
+            throw new NotFoundHttpException("utilisateur `$userId` not found");
+        }
+
+        return response()->json($user);
+    }
 }

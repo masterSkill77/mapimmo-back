@@ -14,6 +14,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\API\V1\OrderController;
+use App\Http\Controllers\API\V1\ThemeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -112,6 +113,14 @@ Route::prefix('/v1')->group(function () {
         Route::get("/", [UserController::class, 'index']);
         Route::post("/register", RegisterController::class);
         Route::put("/{id}", [UserController::class, 'update']);
+        Route::get("/{id}", [UserController::class, 'getById']);
+    });
+    Route::prefix("/theme")->group(function () {
+        Route::get("/", [ThemeController::class, 'index']);
+        Route::get("/{id}", [ThemeController::class, 'getById']);
+        Route::post("/", [ThemeController::class, 'store']);
+        Route::put("/{id}", [ThemeController::class, 'update']);
+        Route::delete("/{id}", [ThemeController::class, 'delete']);
     });
     Route::prefix('/attestation')->group(function () {
         Route::get('/', [AttestationController::class, 'getAllAttestationForUser'])->middleware(['auth:sanctum']);

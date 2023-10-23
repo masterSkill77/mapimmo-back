@@ -33,7 +33,8 @@ class CreateFormationRequest extends FormRequest
             'to_learn' => ['required', 'string',],
             'prerequisites' => ['required', 'string',],
             'included' => ['required'],
-            'labels' => ['string']
+            'labels' => ['string'],
+            'theme' => ['string']
         ];
     }
 }
