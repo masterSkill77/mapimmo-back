@@ -53,4 +53,9 @@ class UserService
     {
         return User::all();
     }
+
+    public function getById(int $userId): User
+    {
+        return User::with('formations.formation')->find($userId);
+    }
 }
