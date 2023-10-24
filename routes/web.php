@@ -18,5 +18,5 @@ Route::get('/', function () {
 });
 
 Route::get('/register', function () {
-    return view('down_invoice');
+    return view('certificate');
 });
