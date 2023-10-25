@@ -4,108 +4,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{asset('css/tailwind.min.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <style>
+
+    .container  {
+    padding: 20px;
+    /* height: 1500px; */
+}
+.outer-1 {
+    border: 5px solid blue;
+    width : 100%;
+    height:auto;
+    padding: 10px;
+}
+
+.outer-2 {
+    border: 5px solid green;
+    width : 97%;
+    padding: 10px;
+}
+
+.outer-3 {
+    border: 5px solid cyan;
+    width : 99%;
+    display: flex;
+    justify-content: center;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-logo {
+    width: 200px;
+    height: auto;
+}
+.img-container {
+    position: absolute;
+    left: 40%;
+    top : 0;
+    background-color: white;
+}
+.attestation-content {
+    padding-top : 15%;
+    width: 100%;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.attestation-content
+small {
+    display: inline-block;
+    font-weight: lighter;
+    /* line-height: 0.3px; */
+    font-style: italic;
+}
+* {
+}
+ul {
+    list-style-type: none;
+}
+div {
+    /* line-height: 10px; */
+}
+.signature-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+td > div {
+    margin : 20px;
+}
+
+    </style>
 </head>
 
 <body>
-    <div class=" pm-certificate-container w-full h-full absolute">
-
-        <div class="outer-border ">
-        <div class="between-border">
-        <div class="inner-border">
-        <div class="pm-certificate-border col-xs-12">
-            <div class="row ">
-                <div class="text-xs col-xs-12 text-center">
-                    <p>Centre de formation spécialisé Loi Alur <br>
-                        98 rue Pierre de Roussard - 62119 DOURGES <br>
-                        09 77 89 33 27 <br>
-                        formation@mapim-immo.fr <br>
-                        www.mapim-formation.com</p>
-                    <p class="mt-1">
-                        Déclarartion d'activité enregistrée sous le numéro de céclaration 00 00 00000 00 <br>
-                        au près du Préfet des Hauts de France.
-                    </p>
-                </div>
-            </div>
-
-            <div class="row pm-certificate-body">
-
-                <div class="pm-certificate-block">
-                    <div class="col-xs-12">
-                        <div class="row">
-                            <div class="margin-0 col-xs-8 text-center">
-                                <span class=" text-lg pm-name-text extrabold text-green-900">ATTESTATION DE FORMATION IMMOBILIER</span>
-                            </div>
-                            <div class="col-xs-2"></div>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12">
-                        <div class="row">
-                            <div class="col-xs-2"></div>
-                            <div class="pm-earned col-xs-8 text-center">
-                                <span class="pm-earned-text padding-0 block cursive">has earned</span>
-                                <span class="pm-credits-text block bold sans">PD175: 1.0 Credit Hours</span>
-                            </div>
-                            <div class="col-xs-2"></div>
-                            <div class="col-xs-12"></div>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12">
-                        <div class="row">
-                            <div class="col-xs-2"></div>
-                            <div class="pm-course-title col-xs-8 text-center">
-                                <span class="pm-earned-text block cursive">while completing the training course entitled</span>
-                            </div>
-                            <div class="col-xs-2"></div>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12">
-                        <div class="row">
-                            <div class="col-xs-2"></div>
-                            <div class="pm-course-title underline col-xs-8 text-center">
-                                <span class="pm-credits-text block bold sans">BPS PGS Initial PLO for Principals at Cluster Meetings</span>
-                            </div>
-                            <div class="col-xs-2"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xs-12">
-                    <div class="row">
-                        <div class="pm-certificate-footer">
-                            <div class="col-xs-4 pm-certified col-xs-4 text-center">
-                                <span class="pm-credits-text block sans">Buffalo City School District</span>
-                                <span class="pm-empty-space block underline"></span>
-                                <span class="bold block">Crystal Benton Instructional Specialist II, Staff Development</span>
-                            </div>
-                            <div class="col-xs-4">
-                                
-                            </div>
-                            <div class="col-xs-4 pm-certified col-xs-4 text-center">
-                                <span class="pm-credits-text block sans">Date Completed</span>
-                                <span class="pm-empty-space block underline"></span>
-                                <span class="bold block">DOB: </span>
-                                <span class="bold block">Social Security # (last 4 digits)</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-        </div>
-        </div>
-        </div>
-       
-     
-
-      
+    <div class="img-container">
+        <img class="img-logo" src="{{ public_path() . ('/logo-formation.png')}}" />
     </div>
-</body>
+<div class="container flex">
+    <div class="outer-1 flex">
+        <div class="outer-2 flex">
+            <div class="outer-3">
+                <div class="attestation-content">
+                        <small>Centre de formation spécialisé Loi Alur</small><br>
+                            <small>98 rue Pierre de Roussard - 62119 DOURGES</small><br>
+                            <small>09 77 89 33 27</small><br>
+                            <small>formation@mapim-immo.fr</small><br>
+                            <small>www.mapim-formation.com</small><br>
+                            <div style="width:80%;margin:auto">
+                            Déclarartion d'activité enregistrée sous le numéro de déclaration 00 00 00000 00
+                            au près du Préfet des Hauts de France.</div>
+                            <h1 style="color: rgb(5, 91, 106);font-weight: bold;font-size:35px"><b>ATTESTATION DE FORMATION IMMOBILIER</b></h1>
+                            <small>Pour satisfaire aux obligations prévues par le décret n°2016-173 du 18 Février 2013 relatif à la formation des professionnels de l'immobilier, M Thomas MARECHAL, représentant de l'organisme de formation ci-dessus désigné, atteste que : </small><br>
+                            <h2><b>M/Mme {{ $attestation->user->name }} {{ $attestation->user->lastname }}</b></h2>
+                            <small>a suivi via notre plateforme de formation e-learning, la formation intitulé : </small><br>
+                            <h3><b>Formation Loi Alur,</b></h3>
+                            <small>soit une durrée totale de {{ $attestation->done }} heures effectuées du {{$attestation->created_at}} au {{$attestation->updated_at}}</small><br>
+                            <small>Cette formation comprenant les modules suivants :</small><br>
+                            <ul>
+                                @foreach($attestation->allFormations as $formation)
+                                <li>Module <b>{{ $formation->title }}</b> : {{ ($formation->duration) }}</li>
+                                @endforeach
+                            </ul>
+                            <small>Cette formation ayant pour objectifs</small><br>
+                            <div><b>La validation et l'approfondissement des connaissances et des compétences en matière d'immobilier</b><br>
+                            M/Mme {{ $attestation->user->name }} {{ $attestation->user->lastname }} a satisfait avec succès aux épreuves d'évaluation organisées à l'issue de la formation.
+                            </div>
+                            <div class="signature-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div>
+                                                    <h3>L'organisme MAPIM formation</h3>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div style="padding-top : 100px;">
+                                                    <p>Fait pour valoir de ce droit, à Dourges,</p>
+                                                    <p>Le {{ $attestation->deliver }}</p>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <h3>Le stagiaire</h3>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 
+
+
+                            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<!--
+
+Centre de formation spécialisé Loi Alur
+98 rue Pierre de Roussard - 62119 DOURGES
+09 77 89 33 27
+formation@mapim-immo.fr
+www.mapim-formation.com
+
+Déclarartion d'activité enregistrée sous le numéro de céclaration 00 00 00000 00
+au près du Préfet des Hauts de France.
+
+ATTESTATION DE FORMATION IMMOBILIER
+has earned PD175: 1.0 Credit Hours
+while completing the training course entitled
+BPS PGS Initial PLO for Principals at Cluster Meetings
+Buffalo City School District Crystal Benton Instructional Specialist II, Staff Development
+Date Completed DOB: Social Security # (last 4 digits)
+-->
 </html>
