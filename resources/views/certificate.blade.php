@@ -103,7 +103,7 @@ td > div {
                             <h2><b>M/Mme {{ $attestation->user->name }} {{ $attestation->user->lastname }}</b></h2>
                             <small>a suivi via notre plateforme de formation e-learning, la formation intitulé : </small><br>
                             <h3><b>Formation Loi Alur,</b></h3>
-                            <small>soit une durrée totale de {{ $attestation->done }} heures effectuées du {{$attestation->created_at}} au {{$attestation->updated_at}}</small><br>
+                            <small>soit une durrée totale de {{ $attestation->done }} heures effectuées du {{$attestation->start}} au {{$attestation->end}}</small><br>
                             <small>Cette formation comprenant les modules suivants :</small><br>
                             <ul>
                                 @foreach($attestation->allFormations as $formation)
@@ -133,7 +133,7 @@ td > div {
                                             <td>
                                                 <div style="padding-top : 100px;">
                                                     <p>Fait pour valoir de ce droit, à Dourges,</p>
-                                                    <p>Le {{ $attestation->deliver }}</p>
+                                                    <p>Le {{ $attestation->end }}</p>
                                                 </div>
                                             </td>
                                             <td>
