@@ -44,8 +44,8 @@ class AttestationService
     {
         $attestation = Attestation::where('id', $attestationId)->with('user')->first();
         $attestation->done = (new Carbon($attestation->hour_done))->format('H');
-        $attestation->created_at = (new Carbon($attestation->created_at))->format('Y-m-d H:m');
-        $attestation->updated = (new Carbon($attestation->updated))->format('Y-m-d H:m');
+        $attestation->created_at = (new Carbon($attestation->created_at))->format('Y-m-d');
+        $attestation->updated = (new Carbon($attestation->updated))->format('Y-m-d');
         $attestation->deliver = (new Carbon($attestation->updated_at))->format('Y-m-d');
         $formationIds = explode(',', $attestation->formations);
         $formations = [];
