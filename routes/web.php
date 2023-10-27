@@ -1,5 +1,6 @@
 <?php
 
+use Spatie\Browsershot\Browsershot;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +20,10 @@ Route::get('/', function () {
 
 Route::get('/register', function () {
     return view('certificate');
+
+    // $pdf = PDF::loadView('certificate');
+    // $pdf->setPaper(array(0, 0, 1000, 800), 'landscape');
+    // $pdf->setOption('pdfBackend', 'GD');
+    // $pdf->render();
+    // return ($pdf->download('attestation.png'));
 });

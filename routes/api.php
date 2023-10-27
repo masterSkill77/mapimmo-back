@@ -124,5 +124,6 @@ Route::prefix('/v1')->group(function () {
     });
     Route::prefix('/attestation')->group(function () {
         Route::get('/', [AttestationController::class, 'getAllAttestationForUser'])->middleware(['auth:sanctum']);
+        Route::get('/{id}', [AttestationController::class, 'getAttestationForUser']);
     });
 });
