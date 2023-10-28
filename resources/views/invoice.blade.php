@@ -2,225 +2,389 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+	<style>
+		* {
+			border: 0;
+			box-sizing: content-box;
+			color: inherit;
+			font-family: inherit;
+			font-size: inherit;
+			font-style: inherit;
+			font-weight: inherit;
+			line-height: inherit;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			text-decoration: none;
+			vertical-align: top;
+		}
+
+		/* content editable */
+
+		*[contenteditable] {
+			border-radius: 0.25em;
+			min-width: 1em;
+			outline: 0;
+		}
+
+		*[contenteditable] {
+			cursor: pointer;
+		}
+
+		span[contenteditable] {
+			display: inline-block;
+		}
+
+		/* heading */
+
+		h1 {
+			font: bold 100% sans-serif;
+			letter-spacing: 0.5em;
+			text-align: center;
+			text-transform: uppercase;
+		}
+
+		/* table */
+
+		table {
+			font-size: 75%;
+			table-layout: fixed;
+			width: 100%;
+		}
+
+		table {
+			border-collapse: collapse;
+			border-spacing: 2px;
+		}
+
+		th,
+		td {
+			border-width: 1px;
+			padding: 0.5em;
+			position: relative;
+			text-align: left;
+		}
+
+		th,
+		td {
+			border-radius: 0.25em;
+			border-style: solid;
+		}
+
+		th {
+			background: #EEE;
+			border-color: #BBB;
+		}
+
+		td {
+			border-color: #DDD;
+		}
+
+		/* page */
+
+		html {
+			font: 16px/1 'Open Sans', sans-serif;
+			overflow: auto;
+			padding: 0.5in;
+		}
+
+		html {
+			background: #999;
+			cursor: default;
+		}
+
+		body {
+			box-sizing: border-box;
+			height: 15in;
+			overflow: hidden;
+			padding: 0.5in;
+			width: 7in;
+		}
+
+		body {
+			background: #FFF;
+			border-radius: 1px;
+			box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5);
+		}
+
+		/* header */
+
+		header:after {
+			clear: both;
+			content: "";
+			display: table;
+		}
+
+		header h1 {
+			background: #000;
+			border-radius: 0.25em;
+			color: #FFF;
+			margin: 0 0 1em;
+			padding: 0.5em 0;
+		}
+
+		header address {
+			float: left;
+			font-size: 75%;
+			font-style: normal;
+			line-height: 1.25;
+			margin: 0 1em 1em 0;
+			font-weight: bold;
+			font-size: 100%;
+		}
+
+		/* article */
+
+		article address {
+			margin-top: -5em;
+		}
+
+		article,
+		article address {
+			margin: 0 0 3em;
+		}
+
+		article:after {
+			clear: both;
+			content: "";
+			display: table;
+		}
+
+		article h1 {
+			clip: rect(0 0 0 0);
+			position: absolute;
+		}
+
+		article address {
+			float: left;
+			font-size: 80%;
+			font-weight: normal;
+		}
+
+		article address p {
+			margin: 0 0 0.5em;
+		}
+
+		article .customer {
+			float: right;
+			font-size: 100%;
+			font-weight: bold;
+			margin-top: -5em;
+			margin-right: 10em;
+		}
+
+		table.balance {
+			float: right;
+			width: 36%;
+		}
+
+		table.balance:after {
+			clear: both;
+			content: "";
+			display: table;
+		}
+
+		table.inventory {
+			clear: both;
+			width: 100%;
+		}
+
+		table.inventory th {
+			font-weight: bold;
+			text-align: center;
+		}
+
+		table.inventory td:nth-child(1) {
+			width: 38%;
+		}
+
+		table.inventory td:nth-child(2) {
+			width: 10%;
+		}
+
+		table.inventory td:nth-child(3) {
+			width: 12%;
+		}
+
+		table.inventory td:nth-child(4) {
+			width: 12%;
+		}
+
+		table.inventory td:nth-child(5) {
+			width: 10%;
+		}
+
+		table.inventory td:nth-child(6) {
+			width: 12%;
+		}
+
+		table.meta {
+			clear: both;
+			width: 100%;
+			margin-bottom: 2%;
+		}
+
+		table.meta th {
+			font-weight: bold;
+			text-align: center;
+		}
+
+		table.meta td {
+			text-align: center;
+		}
+
+		table.balance th,
+		table.balance td {
+			width: 50%;
+		}
+
+		table.balance td {
+			text-align: right;
+		}
+
+		aside {
+			position: relative;
+			bottom: 0;
+		}
+
+		aside div {
+			font-size: 75%;
+			border: none;
+			border-width: 0 0 1px;
+			margin: 0 0 1em;
+			flex-wrap: wrap;
+		}
+
+		@media print {
+			html {
+				background: none;
+				padding: 0;
+			}
+
+			body {
+				box-shadow: none;
+				margin: 0;
+			}
+
+			table {
+				width: 100%;
+				border-collapse: collapse;
+			}
+		}
+
+		@page {
+			margin: 0;
+		}
+	</style>
+
 </head>
 
 <body>
-    <section class="py-20 bg-black">
-        <div class="max-w-5xl mx-auto py-16 bg-white">
-            <article class="overflow-hidden">
-                <div class="bg-[white] rounded-b-md">
-                    <div class="px-9">
-                        <div class="space-y-6 text-slate-700">
-                            <img class="object-cover h-60 w-100" src="{{asset('logo-formation.png')}}" />
-                        </div>
-                        <div class="w-full">
-                            <div class="grid grid-cols-4 gap-12">
-                                <div class="text-md col-span-2 w-full font-light text-slate-500">
-                                    <p class="text-xl font-bold tracking-tight uppercase font-body"> MAPIM </p>
-                                    <p class="text-xl font-bold">8 rue Pierre de Ronsard</p>
-                                    <p class="text-xl font-bold">62119 DOURGES</p>
-                                    <p class="text-xl font-bold">977772896 00014 / 6201Z</p>
-                                </div>
-                                <div class="text-md col-span-2 w-full justify-center font-light text-slate-500 -mr-10">
-                                    <p class="text-xl font-bold tracking-tight uppercase font-body">{{$orders->user->name}} {{$orders->user->lastname}}</p>
-                                    <p class="text-xl font-bold">Adresse</p>
-                                    <p class="text-xl font-bold">CP VIlle</p>
-                                    <p class="text-xl font-bold">Siren et N° TVA</p>
-                               </div>
-                            </div>
-                           
-                        </div>
-                    </div>
-                </div>
+	<!-- <img alt="" src="{{asset('logo-formation.png')}}" width="400px" height="200px"> -->
+	<header>
+		<address contenteditable>
+			<h5 style="text-transform: uppercase; "><b>Mapim</b></h5>
+			<p>8 rue Pierre de Ronsard<br>62119 DOURGES</p>
+			<p>977772896 00014 / 6201Z</p>
+		</address>
+	</header>
+	<article>
+		<address contenteditable>
+			<p>RCS Arras</p>
+			<p> TVA Intracommunautaire :FR 94977772896</p>
+			<p>Tel/Mail : 09 88 19 47 62 / contact@mapim-immo.fr</p>
+		</address>
+		<address class="customer">
+			<p>Nom/Société Client</p>
+			<p> Adresse</p>
+			<p>CP Ville</p>
+			<p>Siren et N° TVA</p>
+		</address>
+		<table class="meta">
+			<thead>
+				<tr>
+					<th><span contenteditable>Date</span></th>
+					<th><span contenteditable>Facture N°</span></th>
+					<th><span contenteditable>Ref. Commande</span></th>
+					<th><span contenteditable>Echéance</span></th>
+					<th><span contenteditable>Soit le </span></th>
+					<th><span contenteditable>Mode de règlement </span></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><span contenteditable> {{$orders->created_at}}</span></td>
+					<td><span contenteditable> {{$orders->num_invoice}}</span></td>
+					<td><span contenteditable></span></td>
+					<td><span contenteditable></span></td>
+					<td><span contenteditable></span></td>
+					<td><span contenteditable>STRIPE</span></td>
+				</tr>
+			</tbody>
+		</table>
+		<table class="inventory">
+			<thead>
+				<tr>
+					<th><span contenteditable>Designation</span></th>
+					<th><span contenteditable>Unité</span></th>
+					<th><span contenteditable>Quantité</span></th>
+					<th><span contenteditable>PU HT</span></th>
+					<th><span contenteditable>TVA</span></th>
+					<th><span contenteditable>TOTAL HT</span></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach($orders->plans as $item)
+				<tr>
 
-                <div class="px-9">
-                    <div class=" w-full">
-                        <div class="grid grid-cols-4 gap-12 ">
-                            <div class="text-md col-span-2 w-full font-normal text-slate-500">
-                                <p>RCS Arras</p>
-                                <p>TVA Intracommunautaire : FR 94977772896</p>
-                                <p>Tel/Mail : 09 88 19 47 62 / contact@mapim-immo.fr</p>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="px-9">
-                    <div class="flex flex-col mx-0 mt-8">
-                        <table class="min-w-full divide-y divide-slate-500 border-collapse border border-slate-400">
-                            <thead class="table-auto">
-                                <tr class="bg-gray-400">
-                                    <th scope="col" class="py-3.5 pl-4 pr-3 text-center text-md font-medium  text-white sm:pl-6 md:pl-0 border border-slate-400">
-                                        Date
-                                    </th>
-                                    <th scope="col" class=" py-3.5 px-3 text-center text-md font-medium  text-white sm:table-cell border border-slate-400">
-                                        Facture N°
-                                    </th>
-                                    <th scope="col" class=" py-3.5 px-3 text-center text-center text-md font-medium  text-white sm:table-cell border border-slate-400">
-                                        Ref. Commande
-                                    </th>
-                                    <th scope="col" class="py-3.5 pl-3 pr-4 text-center text-md font-medium text-white sm:pr-6 md:pr-0 border border-slate-400">
-                                        Echéance
-                                    </th>
-                                    <th scope="col" class="py-3.5 pl-3 pr-4 text-center text-md font-medium  text-white sm:pr-6 md:pr-0 border border-slate-400">
-                                        Soit le
-                                    </th>
-                                    <th scope="col" class="py-3.5 pl-3 pr-4 text-center text-md font-medium  text-white sm:pr-6 md:pr-0 border border-slate-400">
-                                        Mode de paiement
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="border-b border-slate-200">
-                                    <td class="py-4 pl-4 pr-3 text-md sm:pl-6 md:pl-0">
-                                        <div class="font-medium text-slate-700">
-                                        {{$orders->created_at}}
-                                        </div>
-                                        <div class="mt-0.5 text-slate-500 sm:hidden">
-                                        {{$orders->num_invoice}}
-                                        </div>
-                                    </td>
-                                    <td class="hidden px-3 py-4 text-md text-center text-slate-500 sm:table-cell border border-slate-400">
-                                        48
-                                    </td>
-                                    <td class="hidden px-3 py-4 text-md text-center text-slate-500 sm:table-cell border border-slate-400">
-                                       
-                                    </td>
-                                    <td class="py-4 pl-3 pr-4 text-md text-center text-slate-500 sm:pr-6 md:pr-0 border border-slate-400 border border-slate-400">
-                                       
-                                    </td>
-                                    <td class="py-4 pl-3 pr-4 text-md text-center text-slate-500 sm:pr-6 md:pr-0 border border-slate-400 border border-slate-400">
-    
-                                       </td>
-                                </tr>
-                        
+					<td><span contenteditable>{{ $item['title'] }}</span></td>
+					<td><span contenteditable></span></td>
+					<td><span contenteditable>{{ $item['quantity']}} </span>€</td>
+					<td><span contenteditable>{{ $item['price'] }} </span>€</td>
+					<td><span contenteditable> €</span></td>
+					<td><span contenteditable>€</span></td>
+				</tr>
+				@endforeach
+			</tbody>
+		</table>
 
-                               
-                            </tbody>
-                           
-                        </table>
-                    </div>
-                </div>
+		<table class="balance">
+			<tr>
+				<th><span contenteditable>SOUS TOTAL HT</span></th>
+				<td><span> {{$orders->total_amount}} </span></td>
+			</tr>
+			<tr>
+				<th><span contenteditable>TVA</span></th>
+				<td><span contenteditable>0,00 €</span></td>
+			</tr>
+			<tr>
+				<th><span contenteditable>TOTAL TTC</span></th>
+				<td><span>{{$orders->total_amount}} € </span></td>
+			</tr>
+			<tr>
+				<th><span contenteditable>ACOMPTE</span></th>
+				<td><span></span>€</td>
+			</tr>
+			<tr>
+				<th><span contenteditable>A PAYER</span></th>
+				<td><span>{{$orders->total_amount}} €</span></td>
+			</tr>
+		</table>
+	</article>
+	<aside>
 
-                <div class="px-9">
-                    <div class="flex flex-col mx-0 mt-8">
-                        <table class="min-w-full divide-y divide-slate-500">
-                            <thead class=" border-collapse border border-slate-400">
-                                <tr class="bg-gray-400">
-                                    <th scope="col" class="py-3.5 pl-4 pr-3 text-center text-md font-medium text-white sm:pl-6 md:pl-0  border border-slate-400">
-                                        Designation
-                                    </th>
-                                    <th scope="col" class="hidden py-3.5 px-3 text-center text-md font-medium  text-white sm:table-cell border border-slate-400">
-                                        Unité
-                                    </th>
-                                    <th scope="col" class="hidden py-3.5 px-3 text-center text-md font-medium  text-white sm:table-cell border border-slate-400">
-                                        Quantité
-                                    </th>
-                                    <th scope="col" class="py-3.5 pl-3 pr-4 text-center text-md font-medium  text-white sm:pr-6 md:pr-0 border border-slate-400">
-                                        PU HT
-                                    </th>
-                                    <th scope="col" class="py-3.5 pl-3 pr-4 text-center text-md font-medium  text-white sm:pr-6 md:pr-0 border border-slate-400">
-                                        TVA
-                                    </th>
-                                    <th scope="col" class="py-3.5 pl-3 pr-4 text-center text-md font-medium  text-white sm:pr-6 md:pr-0 border border-slate-400">
-                                       TOTAL HT
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="border-collapse border border-slate-400">
-                                <tr class="border-b border-slate-200">
-                                @foreach($orders->plans as $item) 
-                                    <td class="py-4 pl-4 pr-3 text-md sm:pl-6 md:pl-0">
-                                        <div class="font-medium text-slate-700">{{ $item['title'] }}</div>
-                                    </td>
-                                    <td class="hidden px-3 py-4 text-md text-center text-slate-500 sm:table-cell border border-slate-400">
-                                       
-                                    </td>
-                                    <td class="hidden px-3 py-4 text-md text-center text-slate-500 sm:table-cell border border-slate-400">
-                                    {{ $item['quantity']}}  
-                                    </td>
-                                    <td class="py-4 pl-3 pr-4 text-md text-center text-slate-500 sm:pr-6 md:pr-0 border border-slate-400">
-                                    {{ $item['price'] }} 
-                                    </td>
-                                    <td class="hidden px-3 py-4 text-md text-center text-slate-500 sm:table-cell border border-slate-400">
-                                       
-                                    </td>
-                                    <td class="py-4 pl-3 pr-4 text-md text-center text-slate-500 sm:pr-6 md:pr-0 border border-slate-400">
-                                       
-                                    </td>
-                                    @endforeach
-                                </tr>
-                            </tbody>
-                            <tfoot >
-
-                                <tr class="">
-                                    <th scope="row" colspan="5"  class="uppercase  pt-6 pl-6 pr-3 text-md font-light text-right text-slate-500 sm:table-cell md:pl-0 border col-span-3 border-slate-500">
-                                        Sous total
-                                    </th>
-                               
-                                    <td class="pt-6 pl-3 pr-4 text-md text-center text-slate-500 sm:pr-6 md:pr-0 border border-slate-400">
-                                    {{$orders->total_amount}} €
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" colspan="5" class="hidden pt-6 pl-6 pr-3 text-md font-light text-right text-slate-500 sm:table-cell md:pl-0">
-                                        TVA
-                                    </th>
-                           
-                                    <td class="pt-6 pl-3 pr-4 text-md text-center text-slate-500 sm:pr-6 md:pr-0 border border-slate-400">
-                                       
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" colspan="5" class="hidden pt-4 pl-6 pr-3 text-md font-light text-right text-slate-500 sm:table-cell md:pl-0">
-                                        TOTAL TTC
-                                    </th>
-                                   
-                                    <td class="pt-4 pl-3 pr-4 text-md text-center text-slate-500 sm:pr-6 md:pr-0 border border-slate-400 border border-slate-400">
-                                       
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" colspan="5" class="hidden pt-4 pl-6 pr-3 text-md font-normal text-right text-slate-700 sm:table-cell md:pl-0">
-                                        ACOMPTE
-                                    </th>
-                                   
-                                    <td class="pt-4 pl-3 pr-4 text-md font-normal text-center text-slate-700 sm:pr-6 md:pr-0 border border-slate-400">
-                                    {{$orders->total_amount}} €
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row" colspan="5" class="hidden pt-4 pl-6 pr-3 text-md font-normal text-right text-slate-700 sm:table-cell md:pl-0">
-                                        A PAYER
-                                    </th>
-                                   
-                                    <td class="pt-4 pl-3 pr-4 text-md font-normal text-center text-slate-700 sm:pr-6 md:pr-0 border border-slate-400">
-                                    {{$orders->total_amount}} €
-                                    </td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="mt-18 px-9">
-                    <div class="border-t pt-9 border-slate-200">
-                        <div class="text-md font-no text-slate-700">
-                           <p>Taux des pénalités de retard : XX% (ex. 4% en l'absence de paiement) <br>
-                           Taux d'escompte : XX% (ou pas d’escompte pour règlement anticipé) <br>
-                        <span class=" italic">En cas de retard de paiement, application d’une indemnité forfaitaire pour frais de recouvrement de 40€ selon l'article D. 441-5 du code du
-commerce</span></p>
-                        </div>
-                    </div>
-                </div>
-        </div>
-        </article>
-        </div>
-    </section>
-
+		<div contenteditable>
+			<p>Taux des pénalités de retard : XX% (ex. 4% en l'absence de paiement) <br>
+				Taux d'escompte : XX% (ou pas d’escompte pour règlement anticipé) <br>
+				<span class=" italic">En cas de retard de paiement, application d’une indemnité forfaitaire pour frais de recouvrement de 40€ selon l'article D. 441-5 du code du
+					commerce</span>
+			</p>
+		</div>
+	</aside>
 </body>
 
 </html>

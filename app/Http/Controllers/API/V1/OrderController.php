@@ -9,6 +9,8 @@ use App\Services\OrderService;
 use App\Http\Requests\Order\CreateOrderRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Http;
+use Symfony\Component\HttpFoundation\Response;
 
 class OrderController extends Controller
 {
@@ -41,10 +43,10 @@ class OrderController extends Controller
     }
     public function generateInvoice($request)
     {
-        
-        $order = Order::find($request)->with('user')->first();
-        $pdf = PDF::loadView('invoice',['orders'=>$order]);
-        return $pdf->download('Facture-' . now() . ".pdf");
+         $order = Order::find($request)->with('user')->first();
+         $pdf = PDF::loadView('invoice',['orders'=>$order]);
+         return $pdf->download('Facture-' . now() . ".pdf");
+   
     }
     /**
      * Display the specified resource.

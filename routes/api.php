@@ -100,7 +100,7 @@ Route::prefix('/v1')->group(function () {
     });
 
     Route::post('/payment', [PlanController::class, 'pay'])->middleware(['auth:sanctum']);
-    Route::get('/download-invoice/{id}', [OrderController::class, 'generateInvoice']);
+    Route::get('/download-invoice/{id}', [OrderController::class, 'generateInvoice'])->middleware(['auth:sanctum']);
     Route::apiResource('/order', OrderController::class)->middleware(['auth:sanctum']);
 
     Route::prefix("/question")->group(function () {
