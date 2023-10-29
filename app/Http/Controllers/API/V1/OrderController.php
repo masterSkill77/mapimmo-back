@@ -41,9 +41,10 @@ class OrderController extends Controller
         $data['num_invoice'] = date('Ymd').rand(100,999);
         return $this->orderservice->store($data);
     }
-    public function generateInvoice($request)
+    public function generateInvoice($id, $token)
     {
-         $order = Order::find($request)->with('user')->first();
+       
+         $order = Order::find($id)->with('user')->first();
          $pdf = PDF::loadView('invoice',['orders'=>$order]);
          return $pdf->download('Facture-' . now() . ".pdf");
    
