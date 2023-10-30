@@ -28,7 +28,7 @@ class RegisterRequest extends FormRequest
             'password' => 'required|string',
             'enterprise_name' => 'required|string',
             'lastname' => 'required|string',
-            'phone_number' => 'required|int',
+            'phone_number' => 'required|string',
             'card_number' => 'required|int',
             'card_month_expires' => 'required|int',
             'card_year_expires' => 'required|int',
