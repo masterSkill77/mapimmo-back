@@ -299,7 +299,7 @@
 			<p>Tel/Mail : 09 88 19 47 62 / contact@mapim-immo.fr</p>
 		</address>
 		<address class="customer">
-			<p>Nom/Société Client</p>
+			<p>{{$orders->user->name}} {{$orders->user->lastname}} </p>
 			<p> Adresse</p>
 			<p>CP Ville</p>
 			<p>Siren et N° TVA</p>
