@@ -300,6 +300,7 @@
 		</address>
 		<address class="customer">
 			<p>{{$orders->user->name}} {{$orders->user->lastname}} </p>
+			<p>Société Client</p>
 			<p> Adresse</p>
 			<p>CP Ville</p>
 			<p>Siren et N° TVA</p>
@@ -343,8 +344,8 @@
 
 					<td><span contenteditable>{{ $item['title'] }}</span></td>
 					<td><span contenteditable></span></td>
-					<td><span contenteditable>{{ $item['quantity']}} </span>€</td>
-					<td><span contenteditable>{{ $item['price'] }} </span>€</td>
+					<td><span contenteditable>{{ $item['quantity']}} €</span></td>
+					<td><span contenteditable>{{ $item['price'] }} €</span></td>
 					<td><span contenteditable> €</span></td>
 					<td><span contenteditable>€</span></td>
 				</tr>
@@ -355,7 +356,7 @@
 		<table class="balance">
 			<tr>
 				<th><span contenteditable>SOUS TOTAL HT</span></th>
-				<td><span> {{$orders->total_amount}} </span></td>
+				<td><span> {{$orders->total_amount}} €</span></td>
 			</tr>
 			<tr>
 				<th><span contenteditable>TVA</span></th>
