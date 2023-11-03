@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -21,6 +23,14 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'card_number',
+        'card_month_expires',
+        'card_year_expires',
+        'enterprise_name',
+        'lastname',
+        'hour_remains',
+        'phone_number',
+        'available_hour'
     ];
 
     /**
@@ -42,4 +52,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    protected $dispatchesEvents = [
+        'created' => \App\Events\UserCreated::class,
+    ];
+
+    public function formations(): HasMany
+    {
+        return $this->hasMany(UserFormation::class);
+    }
+
+    public function orders(): BelongsTo
+    {
+        return $this->belongsTo(Order::class);
+    }
 }

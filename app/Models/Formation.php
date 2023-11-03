@@ -20,6 +20,9 @@ class Formation extends Model
         'prerequisites',
         'included',
         'uuid',
+        'labels',
+        'photo',
+        'theme'
     ];
 
     public function questions(): HasMany
@@ -27,8 +30,16 @@ class Formation extends Model
         return $this->hasMany(Question::class, 'formation_id');
     }
 
-    public function chapters() : BelongsTo
+    public function chapters(): HasMany
     {
-        return $this->belongsTo(Chapter::class, 'formation_id');
+        return $this->hasMany(Chapter::class, 'formation_id');
+    }
+    public function usersTaking(): HasMany
+    {
+        return $this->hasMany(UserFormation::class);
+    }
+    public function commentaires(): HasMany
+    {
+        return $this->hasMany(Commentaire::class);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Lesson\LessonCreateRequest;
 use App\Services\LessonService;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -37,4 +38,18 @@ class LessonController extends Controller
         return response()->json($lesson);
     }
 
+    public function update(Request $request): JsonResponse
+    {
+        $orders = $request->input('orders');
+        try {
+            foreach($orders as $order) {
+                $this->lessonservice->update($order, $order['id']);
+            }
+            return response()->json([
+                'message' => 'Lesson updated successfully'
+            ]);
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
 }

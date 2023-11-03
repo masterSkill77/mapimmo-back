@@ -7,14 +7,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
+    const QCM = 0;
+    const TRUE_OR_FALSE = 1;
     use HasFactory;
 
     protected $fillable = [
-        'quesiton_title',
-        'quesiton_type',
+        'question_title',
+        'question_type',
         'question_order',
         'answers',
         'correct_answer',
         'formation_id'
     ];
+
+    protected $hidden = [
+        'correct_answer'
+    ];
+
+    public function formation()
+    {
+        return $this->belongsTo(Formation::class);
+    }
 }

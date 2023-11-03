@@ -12,7 +12,8 @@ class Lesson extends Model
     protected $fillable = [
         'lesson_title',
         'youtube_video',
-        'chapter_id'
+        'chapter_id',
+        'order'
     ];
 
     public function chapter(): BelongsTo
