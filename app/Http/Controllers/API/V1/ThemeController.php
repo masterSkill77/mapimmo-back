@@ -13,13 +13,13 @@ class ThemeController extends Controller
 {
     public function __construct(public ThemeService $themeService)
     {
-        
+
     }
 
     public function store(CreateThemRequest $request): JsonResponse
     {
         $theme = $this->themeService->store($request);
-        return response()->json($theme);
+        return response()->json($theme, 201);
     }
 
     public function index()
