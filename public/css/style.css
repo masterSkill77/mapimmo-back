@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Pinyon+Script|Rochester');
+
+.cursive {
+  font-family: 'Pinyon Script', cursive;
+}
+
+.sans {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.block {
+  display: block;
+}
+
+.underline {
+  border-bottom: 1px solid #777;
+  padding: 5px;
+  margin-bottom: 15px;
+}
+
+.margin-0 {
+  margin: 0;
+}
+
+.padding-0 {
+  padding: 0;
+}
+
+.pm-empty-space {
+  height: 40px;
+  width: 100%;
+}
+
+body {
+  background: #ffffff;
+}
+
+
+.pm-certificate-container {
+  background-color: #618597;
+  padding: 30px;
+  color: #333;
+  font-family: 'Open Sans', sans-serif;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+
+  
+  .outer-border {
+    width: 95%;
+    height: 95%;
+    position: absolute;
+    border: 10px solid #010d03;
+  }
+  
+  .inner-border {
+    width: 91%;
+    height: 89%;
+    position: absolute;
+    margin: 30px;
+    margin-right: -30px;
+    border: 10px solid #1c421dfc;
+  }
+  .between-border {
+    width: 93%;
+    height: 92%;
+    position: absolute;
+    margin: 15px;
+    padding: 3px;
+    border: 10px solid #48d585;
+  }
+
+
+  .pm-certificate-border {
+    position: absolute;
+    width: 89.5%;
+    height: 87%;
+    border: 1px solid #E1E5F0;
+    background-color: rgba(255, 255, 255, 1);
+    background-image: none;
+    margin: 40px;
+  
+
+    .pm-certificate-block {
+      width: 650px;
+      height: 200px;
+      position: relative;
+      left: 50%;
+      margin-left: -325px;
+      top: 70px;
+      margin-top: 0;
+    }
+
+    .pm-certificate-header {
+      margin-bottom: 10px;
+    }
+
+    .pm-certificate-title {
+      position: relative;
+      top: 40px;
+
+      h2 {
+        font-size: 34px !important;
+      }
+    }
+
+    .pm-certificate-body {
+      padding: 2px;
+
+      .pm-name-text {
+        font-size: 32px;
+        font-weight: bold;
+      }
+    }
+
+    .pm-earned {
+      margin: 15px 0 20px;
+      .pm-earned-text {
+        font-size: 20px;
+      }
+      .pm-credits-text {
+        font-size: 15px;
+      }
+    }
+
+    .pm-course-title {
+      .pm-earned-text {
+        font-size: 20px;
+      }
+      .pm-credits-text {
+        font-size: 15px;
+      }
+    }
+
+    .pm-certified {
+      font-size: 12px;
+
+      .underline {
+        margin-bottom: 5px;
+      }
+    }
+
+    .pm-certificate-footer {
+      width: 650px;
+      height: 100px;
+      position: relative;
+      left: 50%;
+      margin-left: -325px;
+      bottom: -105px;
+    }
+  }
+}
+
+.pm-certificate-block::after{
+  content: "";
+  display: table;
+  clear: both;
+
+} 

@@ -13,14 +13,16 @@ return new class extends Migration
     {
         Schema::create('formations', function (Blueprint $table) {
             $table->id();
+            $table->string("uuid");
             $table->string("title");
-            $table->timestamp("duration"); // Durée
+            $table->time("duration"); // Durée
             $table->text("description"); // Desccription de la formation
             $table->text("target_audience"); // Public ciblé
             $table->text("to_learn"); // Que vais-je apprendre
             $table->text("prerequisites"); // Prérequis
             $table->text("included"); // Matériels inclus
-            $table->string("labels");
+            $table->string("labels")->nullable();
+            $table->boolean("them")->default(false);
             $table->timestamps();
         });
     }

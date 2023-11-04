@@ -1,0 +1,36 @@
+<?php
+
+use App\Models\Admin;
+use App\Models\Formation;
+use App\Models\User;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('commentaires', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(Formation::class);
+            $table->foreignIdFor(User::class)->nullable();
+            $table->foreignIdFor(Admin::class)->nullable();
+            $table->string('text');
+            $table->unsignedBigInteger('response_to')->nullable();
+            $table->foreign('response_to')->references('id')->on('commentaires');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('commentaires');
+    }
+};

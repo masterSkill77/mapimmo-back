@@ -14,8 +14,8 @@ return new class extends Migration
     {
         Schema::create('chapters', function (Blueprint $table) {
             $table->id();
-            $table->string("title");
-            $table->tinyInteger("order"); // ordre d'apparition dans la formation
+            $table->string('title');
+            $table->tinyInteger('order'); // ordre d'apparition dans la formation
             $table->foreignIdFor(Formation::class); // chapitre liée à une formation
             $table->timestamps();
         });
