@@ -344,10 +344,10 @@
 
 					<td><span contenteditable>{{ $item['title'] }}</span></td>
 					<td><span contenteditable></span></td>
-					<td><span contenteditable>{{ $item['quantity']}} €</span></td>
+					<td><span contenteditable>{{ $item['quantity']}} </span></td>
 					<td><span contenteditable>{{ $item['price'] }} €</span></td>
-					<td><span contenteditable> €</span></td>
-					<td><span contenteditable>€</span></td>
+					<td><span contenteditable> %</span></td>
+					<td><span contenteditable></span></td>
 				</tr>
 				@endforeach
 			</tbody>
