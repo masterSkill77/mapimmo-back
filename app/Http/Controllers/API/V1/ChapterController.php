@@ -51,7 +51,10 @@ class ChapterController extends Controller
 
     public function update(Request $request, $chapterId): JsonResponse
     {
-        $chapter = $this->chapterservice->update($request->all(), $chapterId);
+        $chapterData = $request->only(['id', 'title', 'order', 'formation_id']);
+
+        $chapter = $this->chapterservice->update($chapterData, $chapterId);
+    
         if ($chapter) {
             return response()->json($chapter, 200);
         } else {
