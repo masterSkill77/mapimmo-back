@@ -21,10 +21,17 @@ class UserController extends Controller
         $user = $this->userService->getAllUser();
         return response()->json($user);
     }
-    public function update(RegisterRequest $request) :JsonResponse{
+    public function update(Request $request, int $userId) :JsonResponse{
     
-       $user = $this->userService->update($request);
-       return response()->json($user);
+        $this->validate($request, [
+            'email' => 'email',
+        ]);
+    
+        $data = $request->all();
+    
+        $user = $this->userService->update($data, $userId);
+    
+        return response()->json($user);
     }
 
     public function getById($userId)

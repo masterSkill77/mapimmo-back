@@ -36,17 +36,22 @@ class UserService
         return ['user' => $user, 'token' => $token->plainTextToken];
     }
 
-    public function update(RegisterRequest $request) : User
+    public function update(array $data, int $userId) : User
     {
-      
-        $user = auth()->user();
-        if($user){
-            $data = $request->toArray();
-             $data['password'] = Hash::make($data['password']);
-            $user->update($data);
-            return $user;
+        $user = User::find($userId);
+
+        if (!$user) {
+            throw new NotFoundHttpException("User not found");
         }
-        throw new NotFoundHttpException("User  not found");
+    
+        if (isset($data['password'])) {
+            $data['password'] = Hash::make($data['password']);
+        }
+    
+        $user->fill($data);
+        $user->save();
+    
+        return $user;
     }
 
     public function getAllUser()
