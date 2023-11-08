@@ -47,8 +47,8 @@ class FormationController extends Controller
         if($request->file('photo'))
         {
                 $filename =time() . '.' . $request->file('photo')->getClientOriginalExtension();
-                $path = $request->file('photo')->move(public_path('/formation'), $filename);
-                $data['photo'] = '/' . $path;
+                $path = $request->file('photo')->move(public_path('/storage'), $filename);
+                $data['photo'] = '/' . $filename;
         }
         $data['uuid'] = Str::uuid();
         $formation = $this->formationService->store($data);
