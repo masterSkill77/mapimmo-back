@@ -43,11 +43,11 @@ class FormationController extends Controller
     public function store(CreateFormationRequest $request): JsonResponse
     {
 
+        $data = $request->validated();
         if($request->file('photo'))
         {
-                $path = $request->file('photo')->storeAs('public/formation', time() . '.' . $request->file('photo')->getClientOriginalExtension());
-                $data = $request->validated();
-                $path = str_replace('public/', '', $path);
+                $filename =time() . '.' . $request->file('photo')->getClientOriginalExtension();
+                $path = $request->file('photo')->move(public_path('/formation'), $filename);
                 $data['photo'] = '/' . $path;
         }
         $data['uuid'] = Str::uuid();
