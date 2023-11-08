@@ -29,9 +29,9 @@ class RegisterRequest extends FormRequest
             'enterprise_name' => 'required|string',
             'lastname' => 'required|string',
             'phone_number' => 'required|string',
-            'card_number' => 'required|int',
-            'card_month_expires' => 'required|int',
-            'card_year_expires' => 'required|int',
+            // 'card_number' => 'required|int',
+            // 'card_month_expires' => 'required|int',
+            // 'card_year_expires' => 'required|int',
         ];
     }
 }

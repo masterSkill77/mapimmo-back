@@ -42,10 +42,14 @@ class FormationController extends Controller
 
     public function store(CreateFormationRequest $request): JsonResponse
     {
-        $path = $request->file('photo')->storeAs('public/formation', time() . '.' . $request->file('photo')->getClientOriginalExtension());
+
         $data = $request->validated();
-        $path = str_replace('public/', '', $path);
-        $data['photo'] = '/' . $path;
+        if($request->file('photo'))
+        {
+                $filename =time() . '.' . $request->file('photo')->getClientOriginalExtension();
+                $path = $request->file('photo')->move(public_path('/storage'), $filename);
+                $data['photo'] = '/' . $filename;
+        }
         $data['uuid'] = Str::uuid();
         $formation = $this->formationService->store($data);
         return response()->json($formation, Response::HTTP_CREATED);
