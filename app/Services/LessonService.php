@@ -16,7 +16,7 @@ class LessonService implements IService
 
     public function getAll() :Collection
     {
-        return Chapter::with('lessons')->get();
+        return Chapter::with('lessons', 'formation')->get();
     }
 
     public function getById(int $lessonId) : Lesson
