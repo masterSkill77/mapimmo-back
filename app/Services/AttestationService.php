@@ -37,7 +37,7 @@ class AttestationService
     }
     public function getAllAttestationForUser(int $userId)
     {
-        return Attestation::where('user_id', $userId)->where('deliver', true)->get();
+        return Attestation::where('user_id', $userId)->with('user')->where('deliver', true)->get();
     }
 
     public function getAttestation(int $attestationId)
