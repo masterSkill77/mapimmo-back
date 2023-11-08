@@ -12,22 +12,22 @@ class OrderService  {
     {
 
         $order = Order::create($data);
-  
+
         event(new OrderCreated($order));
         return $order;
 
-    } 
+    }
 
     public function getAll() :Collection
     {
-        return Order::orderBy('created_at', 'asc')->limit(5)->get();
+        return Order::orderBy('created_at', 'asc')->get();
     }
 
     public function getById(int $orderId) : Order
     {
         return Order::findOrFail($orderId);
     }
-    
+
 
 
 }

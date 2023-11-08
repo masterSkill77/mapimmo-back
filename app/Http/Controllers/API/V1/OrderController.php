@@ -17,7 +17,7 @@ class OrderController extends Controller
 
     public function __construct (public OrderService $orderservice)
     {
-    
+
     }
 
     /**
@@ -43,18 +43,18 @@ class OrderController extends Controller
     }
     public function generateInvoice($id, $token)
     {
-       
-         $order = Order::find($id)->with('user')->first();
+
+         $order = Order::where('id',$id)->with('user')->first();
          $pdf = PDF::loadView('invoice',['orders'=>$order]);
          return $pdf->download('Facture-' . now() . ".pdf");
-   
+
     }
     /**
      * Display the specified resource.
      */
     public function show($id)
     {
-    
+
         $order = Order::find( $id)->with('user')->first();
         return  view('invoice', ["order" => $order]);
     }

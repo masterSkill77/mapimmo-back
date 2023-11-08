@@ -28,7 +28,7 @@ class OrderSaveListener
      */
     public function handle(OrderCreated $event): void
     {
-        $order = Order::find($event->order->id)->with('user')->first();
+        $order = Order::where('id',$event->order->id)->with('user')->first();
 
         $user = User::where('id', $order->user_id)->first();
 
