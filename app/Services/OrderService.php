@@ -18,9 +18,9 @@ class OrderService  {
 
     }
 
-    public function getAll() :Collection
+    public function getAll(int $userId) :Collection
     {
-        return Order::orderBy('created_at', 'asc')->get();
+        return Order::orderBy('created_at', 'desc')->where('user_id' , $userId)->get();
     }
 
     public function getById(int $orderId) : Order

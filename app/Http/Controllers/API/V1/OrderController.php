@@ -25,7 +25,8 @@ class OrderController extends Controller
      */
     public function  index(): JsonResponse
     {
-        $orders = $this->orderservice->getAll();
+        $user = auth()->user();
+        $orders = $this->orderservice->getAll($user->id);
         return response()->json($orders);
     }
 
