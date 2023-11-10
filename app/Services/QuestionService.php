@@ -24,7 +24,7 @@ class QuestionService
 
     public function getAllQuestion()
     {
-        return Question::all();
+        return Question::with('formation')->get();
     }
 
     public function update(array $data, int $questionId): Question
@@ -32,11 +32,11 @@ class QuestionService
         $question = Question::find($questionId);
 
         if (!$question) {
-            return null; 
+            return null;
         }
         $question->fill($data);
         $question->save();
-    
+
         return $question;
     }
 
