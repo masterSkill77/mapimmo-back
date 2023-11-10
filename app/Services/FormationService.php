@@ -36,10 +36,16 @@ class FormationService implements IService
 
     public function update($data, int $formationId): Formation
     {
+        $formation = Formation::find($formationId);
 
-        return Formation::where('id', $formationId)->update($data);
+        if (!$formation) {
+            throw new NotFoundHttpException("Formation non trouvée");
+        }
+
+        $formation->update($data);
+
+        return $formation;
     }
-
     public function delete($formationId): Formation
     {
 

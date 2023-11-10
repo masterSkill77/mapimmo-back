@@ -81,4 +81,13 @@ class FormationController extends Controller
         $taken = $this->formationService->makeLessonDone($user->id, $formation->id, $lessonDone, $isDone);
         return response()->json($taken, Response::HTTP_CREATED);
     }
+    public function update(Request $request, $formationId): JsonResponse
+    {
+        $formation = $this->formationService->update($request->all(), $formationId);
+        if ($formation) {
+            return response()->json($formation, 200);
+        } else {
+            throw new NotFoundHttpException("Erreur de la modification");
+        }
+    }
 }
