@@ -10,12 +10,5 @@ class UserController extends Controller
 {
     public function __construct(public UserService $userService){}
 
-    public function updateUserPhoto(Request $request) {
-        $user = auth()->user();
-        $path = $request->file('photo');
 
-        $user = $this->userService->updateUserPhoto($user, $path);
-
-        return response()->json($user);
-    }
 }
