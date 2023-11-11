@@ -48,7 +48,13 @@ class UserController extends Controller
         $user = auth()->user();
         $path = $request->file('photo');
 
-        $user = $this->userService->updateUserPhoto($user, $path);
+        if($request->file('photo'))
+        {
+                $filename =time() . '.' . $request->file('photo')->getClientOriginalExtension();
+                $path = $request->file('photo')->move(public_path('/storage'), $filename);
+        }
+
+        $user = $this->userService->updateUserPhoto($user,'/' . $path);
 
         return response()->json($user);
     }

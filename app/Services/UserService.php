@@ -56,7 +56,7 @@ class UserService
 
     public function updateUserPhoto(User $user, $path) {
         $user->photo = $path;
-        // $user->save();
+        $user->save();
         return $user;
     }
 
