@@ -52,6 +52,7 @@ class UserController extends Controller
         {
                 $filename =time() . '.' . $request->file('photo')->getClientOriginalExtension();
                 $path = $request->file('photo')->move(public_path('/storage'), $filename);
+                $path = $filename;
         }
 
         $user = $this->userService->updateUserPhoto($user,'/' . $path);
