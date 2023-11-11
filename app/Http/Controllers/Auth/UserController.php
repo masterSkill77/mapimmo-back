@@ -22,15 +22,15 @@ class UserController extends Controller
         return response()->json($user);
     }
     public function update(Request $request, int $userId) :JsonResponse{
-    
+
         $this->validate($request, [
             'email' => 'email',
         ]);
-    
+
         $data = $request->all();
-    
+
         $user = $this->userService->update($data, $userId);
-    
+
         return response()->json($user);
     }
 
@@ -40,6 +40,22 @@ class UserController extends Controller
         if(!$user) {
             throw new NotFoundHttpException("utilisateur `$userId` not found");
         }
+
+        return response()->json($user);
+    }
+
+    public function updateUserPhoto(Request $request) {
+        $user = auth()->user();
+        $path = $request->file('photo');
+
+        if($request->file('photo'))
+        {
+                $filename =time() . '.' . $request->file('photo')->getClientOriginalExtension();
+                $path = $request->file('photo')->move(public_path('/storage'), $filename);
+                $path = $filename;
+        }
+
+        $user = $this->userService->updateUserPhoto($user,'/' . $path);
 
         return response()->json($user);
     }

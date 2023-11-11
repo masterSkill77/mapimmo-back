@@ -114,6 +114,7 @@ Route::prefix('/v1')->group(function () {
         Route::post("/register", RegisterController::class);
         Route::put("/{id}", [UserController::class, 'update']);
         Route::get("/{id}", [UserController::class, 'getById']);
+        Route::post('/update', [UserController::class, 'updateUserPhoto'])->middleware('auth:sanctum');
     });
     Route::prefix("/theme")->group(function () {
         Route::get("/", [ThemeController::class, 'index']);

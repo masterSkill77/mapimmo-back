@@ -43,14 +43,20 @@ class UserService
         if (!$user) {
             throw new NotFoundHttpException("User not found");
         }
-    
+
         if (isset($data['password'])) {
             $data['password'] = Hash::make($data['password']);
         }
-    
+
         $user->fill($data);
         $user->save();
-    
+
+        return $user;
+    }
+
+    public function updateUserPhoto(User $user, $path) {
+        $user->photo = $path;
+        $user->save();
         return $user;
     }
 
