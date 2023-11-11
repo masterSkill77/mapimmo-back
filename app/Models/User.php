@@ -30,6 +30,7 @@ class User extends Authenticatable
         'lastname',
         'hour_remains',
         'phone_number',
+        'photo',
         'available_hour'
     ];
 
