@@ -81,7 +81,7 @@ class FormationController extends Controller
         $taken = $this->formationService->makeLessonDone($user->id, $formation->id, $lessonDone, $isDone);
         return response()->json($taken, Response::HTTP_CREATED);
     }
-    public function update(Request $request, $formationId): JsonResponse
+    public function update(Request $request, $formationId) : JsonResponse
     {
         $data = $request->all();
         if($request->file('photo'))

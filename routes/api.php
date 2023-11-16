@@ -42,7 +42,7 @@ Route::prefix('/v1')->group(function () {
         Route::get('/{id}', [FormationController::class, 'getById']);
         Route::get('/uuid/{formationUuid}', [FormationController::class, 'getByUuid']);
         Route::post('/', [FormationController::class, 'store']);
-        Route::put('/{id}', [FormationController::class, 'update']);
+        Route::post('/{id}', [FormationController::class, 'update']);
         Route::delete('/{id}', [FormationController::class, 'delete']);
         Route::prefix('/{id}')->group(function () {
             Route::post('/question', [QuestionController::class, 'store']);

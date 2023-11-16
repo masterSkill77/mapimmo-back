@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Log;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class FormationService implements IService
 {
@@ -41,8 +42,8 @@ class FormationService implements IService
         if (!$formation) {
             throw new NotFoundHttpException("Formation non trouvée");
         }
-
-        $formation->update($data);
+        $formation->fill($data);
+        $formation->save();
 
         return $formation;
     }
