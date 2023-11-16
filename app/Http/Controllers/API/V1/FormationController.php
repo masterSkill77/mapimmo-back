@@ -83,7 +83,14 @@ class FormationController extends Controller
     }
     public function update(Request $request, $formationId): JsonResponse
     {
-        $formation = $this->formationService->update($request->all(), $formationId);
+        $data = $request->all();
+        if($request->file('photo'))
+        {
+                $filename =time() . '.' . $request->file('photo')->getClientOriginalExtension();
+                $path = $request->file('photo')->move(public_path('/storage'), $filename);
+                $data['photo'] = '/' . $filename;
+        }
+        $formation = $this->formationService->update($data, $formationId);
         if ($formation) {
             return response()->json($formation, 200);
         } else {
