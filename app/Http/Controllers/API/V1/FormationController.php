@@ -97,4 +97,15 @@ class FormationController extends Controller
             throw new NotFoundHttpException("Erreur de la modification");
         }
     }
+
+    public function delete(Formation $formation) : JsonResponse {
+        try {
+            $formation->delete();
+            return response()->json(['status' => true]);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
+
+    }
 }
