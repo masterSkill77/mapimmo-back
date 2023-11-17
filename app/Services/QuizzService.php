@@ -18,7 +18,7 @@ class QuizzService
                 $validated = true;
         }
         else {
-            $correctAnswer = array_diff(explode('|', $answer), explode('|', $question->correct_answer));
+            $correctAnswer = array_diff(explode('|', $question->correct_answer),explode('|', $answer));
             if (count($correctAnswer) == 0)
                 $validated = true;
         }
