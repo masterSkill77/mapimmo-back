@@ -37,4 +37,10 @@ class QuizzController extends Controller
 
         return response()->json($myQuizzes);
     }
+
+    public function getListQuizzes() {
+        $quizzes = $this->quizzService->getListQuizz();
+
+        return response()->json($quizzes);
+    }
 }

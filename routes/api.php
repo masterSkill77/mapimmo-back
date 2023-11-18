@@ -83,6 +83,7 @@ Route::prefix('/v1')->group(function () {
 
     Route::prefix('/quizz')->group(function () {
         Route::post('/', [QuizzController::class, 'storeQuizz'])->middleware(['auth:sanctum']);
+        Route::get('/', [QuizzController::class, 'getListQuizzes']);
     });
 
     Route::prefix('/dashboard')->group(function () {

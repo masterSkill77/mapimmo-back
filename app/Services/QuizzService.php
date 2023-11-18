@@ -52,4 +52,10 @@ class QuizzService
         $myQuizzes = Quizz::where('user_id', $userId)->with('question', 'question.formation')->get();
         return $myQuizzes;
     }
+
+    public function getListQuizz()
+    {
+        $quizzes = Quizz::with('question', 'question.formation', 'user')->get();
+        return $quizzes;
+    }
 }
