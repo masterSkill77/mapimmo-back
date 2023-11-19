@@ -23,9 +23,12 @@ class QuizzController extends Controller
         foreach ($request->quizz as $quizz) {
             $quizzs[] = $this->quizzService->takeQuizz($user, $quizz['question_id'], $quizz['answer']);
         }
-        $notValidatedQuestion = array_filter($quizzs, fn ($quizz) => (!$quizz->validated));
-        $allValidated = count($notValidatedQuestion) == 0;
-        if ($allValidated) {
+        $validatedQuestion = array_filter($quizzs, fn ($quizz) => ($quizz->validated));
+        // $allValidated = count($notValidatedQuestion) == 0;
+
+
+
+        if ((count($validatedQuestion) / count($quizzs) >= 0.6)) {
             event(new FormationValidated($request->quizz, $user));
         }
         return response()->json($quizzs, Response::HTTP_CREATED);
