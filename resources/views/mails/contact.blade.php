@@ -8,16 +8,18 @@
             <li>
                 Email : {{$email}}
             </li>
-            <li>
+             <li>
                 Téléphone : {{$phoneNumber}}
             </li>
+
             <li>
                 Sujet : {{$subjectMail}}
             </li>
+
             <li>
                 Contenu du message :
                 <p>
-                    {{$message}}
+                    {{$mailMessage}}
                 </p>
             </li>
         </ul>

@@ -13,7 +13,6 @@ class SendMailService
     }
     public function sendMail(string $fullname, string $email, string $phoneNumber, string $subject, string $message): SentMessage | null
     {
-        // formation@mapim-immo.fr
-        return Mail::to('clairmont.rajaonarison@gmail.com')->send(new ContactMail($fullname, $email, $phoneNumber, $subject, $message));
+        return Mail::to('formation@mapim-immo.fr')->send(new ContactMail($fullname, $email, $phoneNumber, $subject, $message));
     }
 }

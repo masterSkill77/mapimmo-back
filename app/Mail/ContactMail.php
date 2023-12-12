@@ -16,7 +16,7 @@ class ContactMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(public string $fullname, public string $email, public string $phoneNumber, public string $subjectMail, public string $message)
+    public function __construct(public string $fullname, public string $email, public string $phoneNumber, public string $subjectMail, public string $mailMessage)
     {
         //
     }
@@ -37,7 +37,7 @@ class ContactMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.contact',
+            view: 'mails.contact',
         );
     }
 

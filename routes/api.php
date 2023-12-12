@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\V1\AttestationController;
 use App\Http\Controllers\API\V1\ChapterController;
 use App\Http\Controllers\API\V1\CommentaireController;
+use App\Http\Controllers\API\V1\ContactController;
 use App\Http\Controllers\API\V1\FormationController;
 
 use App\Http\Controllers\API\V1\LessonController;
@@ -128,4 +129,6 @@ Route::prefix('/v1')->group(function () {
         Route::get('/', [AttestationController::class, 'getAllAttestationForUser'])->middleware(['auth:sanctum']);
         Route::get('/{id}', [AttestationController::class, 'getAttestationForUser']);
     });
+
+    Route::post('/contact-us', ContactController::class);
 });
