@@ -13,6 +13,6 @@ class SendMailService
     }
     public function sendMail(string $fullname, string $email, string $phoneNumber, string $subject, string $message): SentMessage | null
     {
-        return Mail::to('fenomanantsoamitia@gmail.com')->send(new ContactMail($fullname, $email, $phoneNumber, $subject, $message));
+        return Mail::to(env('ADMIN_MAIL'))->send(new ContactMail($fullname, $email, $phoneNumber, $subject, $message));
     }
 }
