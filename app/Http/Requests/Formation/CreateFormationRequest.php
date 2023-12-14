@@ -32,7 +32,6 @@ class CreateFormationRequest extends FormRequest
             'target_audience' => ['required', 'string',],
             'to_learn' => ['required', 'string',],
             'prerequisites' => ['required', 'string',],
-            'included' => ['required'],
             'labels' => ['string'],
             'theme' => ['string']
         ];

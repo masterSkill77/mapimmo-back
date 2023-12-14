@@ -42,4 +42,8 @@ class Formation extends Model
     {
         return $this->hasMany(Commentaire::class);
     }
+    public function included(): HasMany
+    {
+        return $this->hasMany(Included::class, 'formation_id');
+    }
 }

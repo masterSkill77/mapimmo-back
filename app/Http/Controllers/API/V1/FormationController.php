@@ -5,7 +5,9 @@ namespace App\Http\Controllers\API\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Formation\CreateFormationRequest;
 use App\Models\Formation;
+use App\Models\Included;
 use App\Services\FormationService;
+use App\Services\IcludedService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -52,6 +54,18 @@ class FormationController extends Controller
         }
         $data['uuid'] = Str::uuid();
         $formation = $this->formationService->store($data);
+       
+        if ($request->file('file_name')) {
+            $pdf = $request->file('file_name');
+            $pdfFilename = time() . '.' . $pdf->getClientOriginalExtension();
+            $pdfPath = $pdf->storeAs('public', $pdfFilename);
+            $data['file_name'] = '/' . $filename;
+            $included = new Included([
+                'file_name' => $pdfFilename
+            ]);
+            $formation->included()->save($included);
+
+        }
         return response()->json($formation, Response::HTTP_CREATED);
     }
     public function getMyCourse(): JsonResponse
