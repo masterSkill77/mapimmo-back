@@ -18,7 +18,6 @@ class Formation extends Model
         'target_audience',
         'to_learn',
         'prerequisites',
-        'included',
         'uuid',
         'labels',
         'photo',

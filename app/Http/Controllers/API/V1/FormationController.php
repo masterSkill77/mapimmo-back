@@ -58,14 +58,15 @@ class FormationController extends Controller
         if ($request->file('file_name')) {
             $pdf = $request->file('file_name');
             $pdfFilename = time() . '.' . $pdf->getClientOriginalExtension();
-            $pdfPath = $pdf->storeAs('public', $pdfFilename);
-            $data['file_name'] = '/' . $filename;
+            $path = $request->file('file_name')->move(public_path('/document'), $pdfFilename);
+            $data['file_name'] = '/' . $pdfFilename;
             $included = new Included([
                 'file_name' => $pdfFilename
             ]);
             $formation->included()->save($included);
-
         }
+        
+
         return response()->json($formation, Response::HTTP_CREATED);
     }
     public function getMyCourse(): JsonResponse
