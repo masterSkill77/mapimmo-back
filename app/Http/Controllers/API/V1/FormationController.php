@@ -25,6 +25,7 @@ class FormationController extends Controller
         $formation = $this->formationService->getById($formationId);
         if (!$formation)
             throw new NotFoundHttpException("Formation with `$formationId` not found");
+        
         return response()->json($formation);
     }
 
@@ -33,7 +34,7 @@ class FormationController extends Controller
         $formation = $this->formationService->getByUuid($formationUuid);
         if (!$formation)
             throw new NotFoundHttpException("Formation with `$formationUuid` not found");
-        return response()->json($formation);
+        return response()->json($includedFiles);
     }
 
     public function index(): JsonResponse
@@ -54,18 +55,18 @@ class FormationController extends Controller
         }
         $data['uuid'] = Str::uuid();
         $formation = $this->formationService->store($data);
-       
-        if ($request->file('file_name')) {
-            $pdf = $request->file('file_name');
-            $pdfFilename = time() . '.' . $pdf->getClientOriginalExtension();
-            $path = $request->file('file_name')->move(public_path('/document'), $pdfFilename);
-            $data['file_name'] = '/' . $pdfFilename;
-            $included = new Included([
-                'file_name' => $pdfFilename
-            ]);
-            $formation->included()->save($included);
+        if ($request->hasFile('file_name')) {
+
+            $files = $request->file('file_name');
+            
+            foreach ($files as $file) {
+                $pdfFilename = uniqid() . '.' . $file->getClientOriginalExtension();
+                $path = $file->move(public_path('/document'), $pdfFilename);
+                $included = new Included(['file_name' => $pdfFilename]);
+
+                $formation->included()->save($included);
+            }
         }
-        
 
         return response()->json($formation, Response::HTTP_CREATED);
     }
@@ -106,6 +107,18 @@ class FormationController extends Controller
                 $data['photo'] = '/' . $filename;
         }
         $formation = $this->formationService->update($data, $formationId);
+        if ($request->hasFile('file_name')) {
+
+            $files = $request->file('file_name');
+            
+            foreach ($files as $file) {
+                $pdfFilename = uniqid() . '.' . $file->getClientOriginalExtension();
+                $path = $file->move(public_path('/document'), $pdfFilename);
+                $included = new Included(['file_name' => $pdfFilename]);
+
+                $formation->included()->save($included);
+            }
+        }
         if ($formation) {
             return response()->json($formation, 200);
         } else {

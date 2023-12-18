@@ -5,6 +5,7 @@ use App\Http\Controllers\API\V1\ChapterController;
 use App\Http\Controllers\API\V1\CommentaireController;
 use App\Http\Controllers\API\V1\ContactController;
 use App\Http\Controllers\API\V1\FormationController;
+use App\Http\Controllers\API\V1\IncludedController;
 
 use App\Http\Controllers\API\V1\LessonController;
 use App\Http\Controllers\API\V1\PlanController;
@@ -128,6 +129,13 @@ Route::prefix('/v1')->group(function () {
     Route::prefix('/attestation')->group(function () {
         Route::get('/', [AttestationController::class, 'getAllAttestationForUser'])->middleware(['auth:sanctum']);
         Route::get('/{id}', [AttestationController::class, 'getAttestationForUser']);
+    });
+    Route::prefix('/included')->group(function () {
+        Route::get('/', [IncludedController::class, 'index']);
+        Route::get('/{id}', [IncludedController::class, 'getById']);
+        Route::post('/', [IncludedController::class, 'store']);
+        Route::put('/{id}', [IncludedController::class, 'update']);
+        Route::delete('/{id}', [IncludedController::class, 'delete']);
     });
 
     Route::post('/contact-us', ContactController::class);
