@@ -18,7 +18,6 @@ class Formation extends Model
         'target_audience',
         'to_learn',
         'prerequisites',
-        'included',
         'uuid',
         'labels',
         'photo',
@@ -41,5 +40,9 @@ class Formation extends Model
     public function commentaires(): HasMany
     {
         return $this->hasMany(Commentaire::class);
+    }
+    public function included(): HasMany
+    {
+        return $this->hasMany(Included::class, 'formation_id');
     }
 }

@@ -22,7 +22,7 @@ class FormationService implements IService
     }
     public function getById(int $formationId): Formation
     {
-        return  Formation::where('id', $formationId)->with(['chapters', 'chapters.lessons',  'usersTaking', 'commentaires', 'commentaires.user', 'commentaires.admin'])->first();
+        return  Formation::where('id', $formationId)->with(['chapters', 'chapters.lessons',  'usersTaking', 'commentaires', 'commentaires.user', 'commentaires.admin', 'included'])->first();
     }
 
     public function getByUuid(string $formationUuid): Formation

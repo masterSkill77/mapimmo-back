@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text("target_audience"); // Public ciblé
             $table->text("to_learn"); // Que vais-je apprendre
             $table->text("prerequisites"); // Prérequis
-            $table->text("included"); // Matériels inclus
+            // $table->text("included"); // Matériels inclus
             $table->string("labels")->nullable();
             $table->boolean("them")->default(false);
             $table->timestamps();
