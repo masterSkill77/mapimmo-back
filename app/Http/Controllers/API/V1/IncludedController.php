@@ -59,4 +59,11 @@ class IncludedController extends Controller
         }
     }
 
+    public function downloadFile($fileName)
+    {
+        $file = public_path('/document/' . $fileName);
+
+        return response()->download($file);
+    }
+
 }

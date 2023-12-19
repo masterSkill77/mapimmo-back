@@ -60,10 +60,11 @@ class FormationController extends Controller
             $files = $request->file('file_name');
             
             foreach ($files as $file) {
-                $pdfFilename = uniqid() . '.' . $file->getClientOriginalExtension();
-                $path = $file->move(public_path('/document'), $pdfFilename);
-                $included = new Included(['file_name' => $pdfFilename]);
+                $pdfFilename = $file->getClientOriginalName();
 
+                $path = $file->move(public_path('/document'), $pdfFilename);
+        
+                $included = new Included(['file_name' => $pdfFilename]);
                 $formation->included()->save($included);
             }
         }
@@ -112,10 +113,11 @@ class FormationController extends Controller
             $files = $request->file('file_name');
             
             foreach ($files as $file) {
-                $pdfFilename = uniqid() . '.' . $file->getClientOriginalExtension();
-                $path = $file->move(public_path('/document'), $pdfFilename);
-                $included = new Included(['file_name' => $pdfFilename]);
+                $pdfFilename = $file->getClientOriginalName();
 
+                $path = $file->move(public_path('/document'), $pdfFilename);
+        
+                $included = new Included(['file_name' => $pdfFilename]);
                 $formation->included()->save($included);
             }
         }
@@ -133,7 +135,12 @@ class FormationController extends Controller
         } catch (\Throwable $th) {
             throw $th;
         }
+    }
 
+    public function downloadPhoto($fileName)
+    {
+        $file = public_path('/storage/' . $fileName);
 
+        return response()->download($file);
     }
 }
