@@ -10,7 +10,7 @@ class Included extends Model
 {
     use HasFactory;
 
-    public $tableName = 'included';
+    protected $table = 'included';
     protected $fillable = [
         'file_name',
         'formation_id'
