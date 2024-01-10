@@ -8,15 +8,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Included extends Model
 {
-
     use HasFactory;
 
+    public $tableName = 'included';
     protected $fillable = [
         'file_name',
         'formation_id'
     ];
 
-    public function formation() : BelongsTo
+    public function formation(): BelongsTo
     {
         return $this->belongsTo(Formation::class, 'formation_id');
     }
