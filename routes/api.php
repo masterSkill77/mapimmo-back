@@ -136,6 +136,7 @@ Route::prefix('/v1')->group(function () {
         Route::post('/', [IncludedController::class, 'store']);
         Route::put('/{id}', [IncludedController::class, 'update']);
         Route::delete('/{id}', [IncludedController::class, 'delete']);
+        Route::get('/download/{fileName}', [IncludedController::class, 'downloadFile']);
     });
 
     Route::post('/contact-us', ContactController::class);
